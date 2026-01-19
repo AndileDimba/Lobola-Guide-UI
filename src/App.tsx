@@ -17,12 +17,8 @@ function App() {
   const [completedSteps, setCompletedSteps] = useState<Set<string>>(() => {
     const saved = localStorage.getItem("lobolo:completed");
     if (saved) {
-      try {
         const arr: string[] = JSON.parse(saved);
         return new Set(arr);
-      } catch (e) {
-        // ignore parse errors
-      }
     }
     return new Set();
   });
