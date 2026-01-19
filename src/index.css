@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    @apply bg-stone-100 text-zinc-900;
+  }
+}
+
 @layer utilities {
   .animate-fade-in {
     animation: fadeIn 0.3s ease-in-out;
