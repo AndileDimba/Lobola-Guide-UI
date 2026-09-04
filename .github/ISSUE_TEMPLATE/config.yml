@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: How to contribute
+    url: https://github.com/AndileDimba/Lobola-Guide-UI/blob/main/CONTRIBUTING.md
+    about: Setup, conventions, and how code and content contributions differ.
+  - name: Writing content for the site
+    url: https://github.com/AndileDimba/Lobola-Guide-UI/blob/main/docs/CONTENT_GUIDE.md
+    about: The language principle, the humble framing rule, and a worked example.
+  - name: Where the project is going
+    url: https://github.com/AndileDimba/Lobola-Guide-UI/blob/main/docs/ROADMAP.md
+    about: Vision, guiding principles and the phased roadmap. Read before proposing something large.

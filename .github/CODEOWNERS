@@ -1,0 +1,20 @@
+# Code owners — GitHub requests these reviewers automatically on a pull request.
+#
+# The cultural content of this project is reviewed by its cultural owner, always.
+# See CONTRIBUTING.md and docs/CONTENT_GUIDE.md for why.
+
+# Default: the maintainer reviews everything for now.
+*                       @AndileDimba
+
+# Content — isiZulu wording, izithakazelo, stage meaning, the content contract.
+# These require the cultural owner's sign-off and cannot be merged without it.
+/src/data/              @AndileDimba
+/src/pages/FAQPage.tsx  @AndileDimba
+/docs/CONTENT_GUIDE.md  @AndileDimba
+/docs/ROADMAP.md        @AndileDimba
+
+# Project governance and licensing.
+/LICENSE                @AndileDimba
+/LICENSE-CONTENT.md     @AndileDimba
+/CODE_OF_CONDUCT.md     @AndileDimba
+/CONTRIBUTING.md        @AndileDimba
