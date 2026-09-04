@@ -1,6 +1,7 @@
 import React from 'react';
 import type { StepCardProps } from '../../data/types';
 import { Shield } from '../Icons/Shield';
+import SceneView from './SceneView';
 
 const StepCard: React.FC<StepCardProps> = ({
   step,
@@ -34,9 +35,16 @@ const StepCard: React.FC<StepCardProps> = ({
 
         <div className="flex-1">
           <div className="flex justify-between items-start">
-            <h3 className={`text-xl font-bold transition-colors ${isActive ? 'text-zinc-900' : 'text-stone-600'}`}>
-              {step.title}
-            </h3>
+            <div>
+              <h3 className={`text-xl font-bold transition-colors ${isActive ? 'text-zinc-900' : 'text-stone-600'}`}>
+                {step.title}
+              </h3>
+              {step.zuluTitle && (
+                <p className={`text-sm italic ${isActive ? theme.accent : 'text-stone-400'}`}>
+                  {step.zuluTitle}
+                </p>
+              )}
+            </div>
             {isCompleted && !isActive && (
               <span className="text-xs font-bold uppercase tracking-widest text-green-600 bg-green-100 px-2 py-1 rounded">
                 Completed
@@ -53,15 +61,23 @@ const StepCard: React.FC<StepCardProps> = ({
       {isActive && (
         <div className="px-6 pb-6 animate-fade-in">
           <div className="pt-6 border-t border-stone-100">
-            <h4 className="font-bold text-stone-900 mb-4 uppercase text-xs tracking-widest">Key Requirements</h4>
-            <ul className="space-y-3 mb-8">
-              {step.details.map((detail, i) => (
-                <li key={i} className="flex items-start gap-3 text-stone-600 text-sm leading-relaxed">
-                  <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${theme.primary}`} />
-                  {detail}
-                </li>
-              ))}
-            </ul>
+            {step.scene ? (
+              <div className="mb-8">
+                <SceneView scene={step.scene} theme={theme} />
+              </div>
+            ) : (
+              <>
+                <h4 className="font-bold text-stone-900 mb-4 uppercase text-xs tracking-widest">Key Requirements</h4>
+                <ul className="space-y-3 mb-8">
+                  {step.details.map((detail, i) => (
+                    <li key={i} className="flex items-start gap-3 text-stone-600 text-sm leading-relaxed">
+                      <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${theme.primary}`} />
+                      {detail}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
 
             <button
               onClick={(e) => {

@@ -37,6 +37,7 @@ export const zuluData: NationData = {
     {
       id: "negotiations_day_umcelo",
       title: "Negotiations Day (Umcelo)",
+      zuluTitle: "Umcelo",
       description:
         "Ngosuku olubekiwe, abakhongi bayavuka ekuseni baya esangweni lakubo kwentombi, babize izithakazelo, bese beqala izinkulumo zokucela isihlobo.",
       details: [
@@ -50,6 +51,73 @@ export const zuluData: NationData = {
         "Umkhosi uqeda usuku, umakoti engena ehamba nezinye izintombi embozile, abakubo kwensizwa bamkhethe phakathi kwezinye izintombi.",
         "Kucelwa incwadi yezibizo noma kuvunyelwane ukuthi kuzoqalwa ngezibizo noma kuqalwe ngamalobolo.",
       ],
+      scene: {
+        narration:
+          "At first light, the groom's chosen negotiators arrive at the gate of the " +
+          "bride's home. They do not simply knock — they announce themselves by calling " +
+          "the family's praises, making clear they have come in peace, to ask for kinship. " +
+          "It is common to be kept waiting at the gate for a long time; a child may be " +
+          "sent to sit or lie before it, and the negotiators offer a small gift to open " +
+          "the way. Only then do the discussions of kinship, and of the cattle, begin.",
+        voice: {
+          zu: "Sikhulekile ekhaya kwanozibanibani, asizile ngempi — sizocela isihlobo esihle.",
+          en: "We greet this home; we have not come with war — we come to ask for a good kinship.",
+          note: "Called out at the gate as the negotiators announce themselves.",
+        },
+        roles: [
+          {
+            term: "Umkhongi omkhulu",
+            gloss:
+              "The chief negotiator — the lead uncle who speaks for the family",
+          },
+          {
+            term: "Umkhongi omncane / umphelezeli",
+            gloss: "The junior negotiator who supports and accompanies him",
+          },
+          {
+            term: "Unobhala",
+            gloss: "The scribe who records everything agreed on the day",
+          },
+          {
+            term: "Intombi",
+            gloss: "The young woman (or two) who carry the bride's gifts",
+          },
+        ],
+        beats: [
+          {
+            en: "The negotiators reach the gate and call the family's praises (izithakazelo).",
+            zu: "Bafika esangweni, babize izithakazelo zabo.",
+          },
+          {
+            en: "They are deliberately kept waiting, sometimes for a long time, before the gate is opened.",
+            zu: "Kujwayelekile ukuthi banganakwa isikhathi eside kuze kube bavulelwa esangweni.",
+          },
+          {
+            en: "A child is sent to sit or lie before the gate; the negotiators offer a small gift to open the way.",
+            zu: "Kuthunyelwa ingane ivule isango; abakhongi bakhipha izipho ukuze ingane ivulele indlela.",
+          },
+          {
+            en: "The bride's father stays silent until the imvulamlomo — the 'mouth-opening' gift — is given.",
+            zu: "Ubaba kamakoti uthule kuze kukhishwe imvulamlomo (izipho).",
+          },
+          {
+            en: "Talk turns to the cattle — their kinds, their number, and the gifts owed to the mother and father.",
+            zu: "Kukhulunywa ngezinkomo zamalobolo, amanani azo, nezibizo zikamama nesikababa.",
+          },
+        ],
+        media: {
+          kind: "illustration",
+          src: "", // reserved — a scene of the abakhongi at the gate at dawn
+          alt: "The groom's negotiators standing at the gate of the bride's home at first light.",
+          caption: {
+            en: "The negotiators announce themselves at the gate.",
+            zu: "Abakhongi bazazisa esangweni.",
+          },
+        },
+        variesNote:
+          "Commonly this is how the day unfolds — but families and regions differ, and each " +
+          "home has its own way. Treat this as a guide, not a rule.",
+      },
     },
     {
       id: "gifting_of_bride_family_umembeso",
