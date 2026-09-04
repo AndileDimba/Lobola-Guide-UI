@@ -1,0 +1,53 @@
+name: Idea or feature request
+description: Suggest something the site should do
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please skim [the roadmap](https://github.com/AndileDimba/Lobola-Guide-UI/blob/main/docs/ROADMAP.md)
+        first — it explains the direction and the deliberate constraints (depth
+        before breadth, story over procedure, phone first).
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is the problem or gap?
+      description: What is hard, missing or confusing for someone reading the site today?
+    validations:
+      required: true
+
+  - type: textarea
+    id: idea
+    attributes:
+      label: What you would like to see
+    validations:
+      required: true
+
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Which part of the roadmap does this serve?
+      options:
+        - Phase 1 — Turn the Zulu guide into a story (visual + bilingual)
+        - Phase 2 — Glossary and the language layer
+        - Phase 3 — Media pipeline
+        - Phase 4 — Regional differentiation
+        - Phase 5 — Other nations
+        - Cross-cutting (accessibility, SEO, analytics, submissions)
+        - Not on the roadmap yet
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+      description: Optional, but helpful.
+
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Would you like to build it?
+      options:
+        - label: I would like to work on this myself

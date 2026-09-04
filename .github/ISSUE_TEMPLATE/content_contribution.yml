@@ -1,0 +1,72 @@
+name: Content contribution
+description: Offer new content — a scene, a phrase, glossary terms, an FAQ answer
+labels: ["content"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for offering. Content is what makes this site worth visiting.
+
+        Two things before you write, both explained in
+        [the content guide](https://github.com/AndileDimba/Lobola-Guide-UI/blob/main/docs/CONTENT_GUIDE.md):
+        **English is the face, isiZulu is the heart** — and the site teaches
+        *"commonly, this is how it goes; families and regions differ"*, never a rule.
+
+        You are welcome to open this issue first and discuss it, or go straight
+        to a pull request. Either way the cultural owner reviews it before it lands.
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What are you contributing?
+      options:
+        - A scene for an existing stage (narration, voice, roles, beats)
+        - Izithakazelo or a spoken phrase, with its English gloss
+        - Glossary terms
+        - An FAQ answer
+        - English glosses for isiZulu that currently has none
+        - Illustration or photography
+        - Something else
+    validations:
+      required: true
+
+  - type: input
+    id: where
+    attributes:
+      label: Which stage or page does it belong to?
+      placeholder: /guide/zulu — "Sending of the Letter"
+
+  - type: textarea
+    id: content
+    attributes:
+      label: The content
+      description: >
+        Draft it here in your own words. If it includes isiZulu, please give the
+        English underneath each line.
+    validations:
+      required: true
+
+  - type: textarea
+    id: source
+    attributes:
+      label: Where does this knowledge come from?
+      description: >
+        Your own family's experience, an elder you asked, a source you can name.
+        Say plainly if you are unsure of any part — that is far better than
+        smoothing it over.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Please confirm
+      options:
+        - label: This is written in my own words, not copied from a book, site or recording
+          required: true
+        - label: It does not publish a named family's or community's private practice
+          required: true
+        - label: Any isiZulu here was written by someone who speaks it, not machine-translated
+          required: true
+        - label: I agree to license this content under CC BY-SA 4.0
+          required: true

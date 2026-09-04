@@ -1,0 +1,70 @@
+name: Content correction
+description: Something on the site is inaccurate, poorly worded, or framed too strongly
+labels: ["content", "correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Corrections are genuinely welcome — including to content the maintainer
+        wrote. This site aims to teach the general shape of the journey humbly;
+        if it has overstated something or got the isiZulu wrong, we want to know.
+
+        Please do not include a named family's or community's private practice.
+        See [the content guide](https://github.com/AndileDimba/Lobola-Guide-UI/blob/main/docs/CONTENT_GUIDE.md).
+
+  - type: input
+    id: where
+    attributes:
+      label: Where on the site?
+      description: Page and stage, or the term.
+      placeholder: /guide/zulu — "Negotiations Day (Umcelo)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: What it says now
+      description: Paste the wording as it currently appears.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of problem is it?
+      options:
+        - The isiZulu is wrong or awkward
+        - The English gloss or translation is off
+        - The meaning of the stage is inaccurate
+        - It is stated as a rule when practice varies
+        - A term is missing or misused
+        - Something else
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested
+    attributes:
+      label: What it should say instead
+      description: Your suggested wording, if you have one.
+
+  - type: textarea
+    id: source
+    attributes:
+      label: Where does your knowledge come from?
+      description: >
+        Your own family's experience, an elder you asked, a source you can name.
+        You do not have to be an expert — just say honestly what you know and how.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Please confirm
+      options:
+        - label: This does not publish a named family's or community's private practice
+          required: true
+        - label: I understand practice varies, and the site should say "commonly" rather than "always"
+          required: true
