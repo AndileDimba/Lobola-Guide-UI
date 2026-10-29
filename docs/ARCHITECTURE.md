@@ -121,7 +121,10 @@ There is no state library and none is needed yet.
   `lobola-hub:letter`), so a half-finished letter is still there next time.
   Nothing typed into it is sent anywhere. Its wording lives in
   `src/data/letter.ts`; the page prints only the letter.
-- No backend, no API, no analytics. Everything ships as static assets.
+- No backend and no API. Everything ships as static assets.
+- Vercel Web Analytics counts page views (no cookies). The letter builder also
+  sends a `Letter shared` event with only the method (`whatsapp`, `print`,
+  `copy`) and the language; custom events are counted on Vercel Pro only.
 
 ## Styling
 

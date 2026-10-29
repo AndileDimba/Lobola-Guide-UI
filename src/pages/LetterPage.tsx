@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { track } from '@vercel/analytics/react';
 import { zuluData } from '../data/zulu';
 import {
   buildLetter,
@@ -108,10 +109,16 @@ const LetterPage = () => {
   const letter = buildLetter(fields, lang);
   const text = letterToText(letter);
 
+  // Only how the letter left the page and its language are counted, never
+  // anything typed into it. Counted on Vercel Pro; ignored on the free plan.
+  const trackShare = (method: 'whatsapp' | 'print' | 'copy') =>
+    track('Letter shared', { method, language: lang });
+
   const copyText = async () => {
     try {
       await navigator.clipboard.writeText(text);
       setCopyStatus('copied');
+      trackShare('copy');
     } catch {
       setCopyStatus('failed');
     }
@@ -230,6 +237,7 @@ const LetterPage = () => {
                 href={`https://wa.me/?text=${encodeURIComponent(text)}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackShare('whatsapp')}
                 className={`inline-flex h-[52px] items-center gap-2.5 rounded-md bg-clay px-6 text-lg font-medium text-paper-light transition-colors hover:bg-clay-dark ${focusRing}`}
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -237,7 +245,10 @@ const LetterPage = () => {
                 </svg>
                 Send on WhatsApp
               </a>
-              <button type="button" onClick={() => window.print()} className={secondaryButton}>
+              <button type="button" onClick={() => {
+                  trackShare('print');
+                  window.print();
+                }} className={secondaryButton}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M6 9V3h12v6" />
                   <rect x="4" y="9" width="16" height="8" rx="1" />
