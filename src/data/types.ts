@@ -71,7 +71,7 @@ export interface Step {
   zuluTitle?: string; // optional isiZulu name of the stage
   summary?: string; // English summary, shown before the isiZulu description
   description: string;
-  details: string[];
+  details: Bilingual[]; // what happens, English first with the isiZulu beneath
   media?: Media; // a picture for the scene slot before the stage has a scene
   tool?: StageTool; // something the reader can do at this stage, such as write the letter
   scene?: Scene; // optional narrative layer; renders as a story when present

@@ -68,7 +68,8 @@ NationData
 ├── id, nationName
 ├── theme: Theme            Tailwind class strings — the nation's "skin"
 └── steps: Step[]
-     ├── id, title, zuluTitle?, description, details[]
+     ├── id, title, zuluTitle?, summary?, description
+     ├── details: Bilingual[]  What happens: en, with the isiZulu beneath
      ├── media?             A picture for the scene slot before the stage has a scene
      ├── tool?              A link to a page that helps do this stage (to, label, description)
      └── scene?             The optional story layer
