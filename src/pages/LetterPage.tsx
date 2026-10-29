@@ -229,7 +229,7 @@ const LetterPage = () => {
 
             <article
               lang={lang}
-              className="rounded border border-rule bg-paper-light px-6 pb-9 pt-9 shadow-[0_1px_0_#CDBA9C,0_18px_40px_-24px_rgba(43,30,22,0.35)] sm:px-[52px] sm:pb-11 sm:pt-12 print:rounded-none print:border-0 print:bg-white print:p-[20mm] print:shadow-none"
+              className="rounded border border-rule bg-paper-light px-6 pb-9 pt-9 shadow-[0_1px_0_#CDBA9C,0_18px_40px_-24px_rgba(43,30,22,0.35)] sm:px-[52px] sm:pb-11 sm:pt-12 print:flex print:min-h-[296mm] print:flex-col print:rounded-none print:border-0 print:bg-white print:p-[20mm] print:shadow-none"
             >
               {strip.length > 0 && (
                 <svg width="72" height="8" aria-hidden="true" className="mb-7 block print:mb-9">
@@ -247,8 +247,10 @@ const LetterPage = () => {
               <p className="mb-1 mt-7 text-[19px] italic">{letter.closing}</p>
               <p className="font-display text-[22px] font-medium">{letter.signName}</p>
               <p className="text-[17px] text-ink-soft">{letter.signLine}</p>
-              {/* On paper only, at the foot of the page */}
-              <p className="hidden text-[11pt] text-ink-faint print:fixed print:bottom-[12mm] print:left-[20mm] print:block">
+              {/* On paper only: the letter fills the page in print, so this
+                  sits at its foot, inside the margin. In the flow rather than
+                  position: fixed, which print previews do not all honour. */}
+              <p className="hidden text-[10pt] text-ink-faint print:mt-auto print:block print:pt-10">
                 Written with Lobola Hub &middot; lobola.dimba.co.za
               </p>
             </article>
