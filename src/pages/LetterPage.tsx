@@ -4,8 +4,11 @@ import { track } from '@vercel/analytics/react';
 import { zuluData } from '../data/zulu';
 import {
   buildLetter,
+  cleanCount,
   emptyLetterFields,
   letterToText,
+  MAX_PEOPLE,
+  NB_HYPHEN,
   type LetterFields,
   type LetterLanguage,
 } from '../data/letter';
@@ -39,7 +42,7 @@ const loadSaved = (): Saved => {
 type Field = {
   key: keyof LetterFields;
   label: string;
-  type?: 'text' | 'date' | 'number' | 'tel';
+  type?: 'text' | 'number' | 'tel';
   placeholder?: string;
   autoComplete?: string;
   // Fields that share a row on a wide form, and how much of it they take
@@ -65,10 +68,7 @@ const sections: { legend: string; rows: Field[][] }[] = [
   {
     legend: 'The visit',
     rows: [
-      [
-        { key: 'date', label: 'Proposed date', type: 'date', width: 'flex-[2_1_180px]' },
-        { key: 'count', label: 'People coming', type: 'number', width: 'flex-[1_1_100px]' },
-      ],
+      [{ key: 'count', label: 'People coming', type: 'number', width: 'flex-[0_1_180px]' }],
       [{ key: 'sender', label: 'Who signs it', autoComplete: 'name' }],
       [
         { key: 'contact', label: 'Contact person', width: 'flex-[1_1_160px]' },
@@ -81,6 +81,19 @@ const sections: { legend: string; rows: Field[][] }[] = [
 const focusRing =
   'focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#2A5C8F]';
 const secondaryButton = `inline-flex h-[52px] items-center gap-2.5 rounded-md border-[1.5px] border-ink-deep px-6 text-lg text-ink-deep transition-colors hover:bg-ink-deep hover:text-paper-light ${focusRing}`;
+
+// Shows "u-Sipho" with a plain hyphen kept on one line, since not every font
+// draws the non-breaking hyphen the letter carries
+const keepPrefixes = (paragraph: string) =>
+  paragraph.split(/(\S*\u2011\S*)/).map((part, i) =>
+    part.includes(NB_HYPHEN) ? (
+      <span key={i} className="whitespace-nowrap">
+        {part.split(NB_HYPHEN).join('-')}
+      </span>
+    ) : (
+      part
+    )
+  );
 
 const LetterPage = () => {
   const [{ fields, lang }, setSaved] = useState<Saved>(loadSaved);
@@ -103,7 +116,10 @@ const LetterPage = () => {
   }, [copyStatus]);
 
   const setField = (key: keyof LetterFields, value: string) =>
-    setSaved((saved) => ({ ...saved, fields: { ...saved.fields, [key]: value } }));
+    setSaved((saved) => ({
+      ...saved,
+      fields: { ...saved.fields, [key]: key === 'count' ? cleanCount(value) : value },
+    }));
   const setLang = (next: LetterLanguage) => setSaved((saved) => ({ ...saved, lang: next }));
 
   const letter = buildLetter(fields, lang);
@@ -175,6 +191,7 @@ const LetterPage = () => {
                         <input
                           type={field.type ?? 'text'}
                           min={field.type === 'number' ? 1 : undefined}
+                          max={field.type === 'number' ? MAX_PEOPLE : undefined}
                           inputMode={field.type === 'number' ? 'numeric' : undefined}
                           value={fields[field.key]}
                           placeholder={field.placeholder}
@@ -212,10 +229,10 @@ const LetterPage = () => {
 
             <article
               lang={lang}
-              className="rounded border border-rule bg-paper-light px-6 pb-9 pt-9 shadow-[0_1px_0_#CDBA9C,0_18px_40px_-24px_rgba(43,30,22,0.35)] sm:px-[52px] sm:pb-11 sm:pt-12 print:border-0 print:bg-white print:p-0 print:shadow-none"
+              className="rounded border border-rule bg-paper-light px-6 pb-9 pt-9 shadow-[0_1px_0_#CDBA9C,0_18px_40px_-24px_rgba(43,30,22,0.35)] sm:px-[52px] sm:pb-11 sm:pt-12 print:rounded-none print:border-0 print:bg-white print:p-[20mm] print:shadow-none"
             >
               {strip.length > 0 && (
-                <svg width="72" height="8" aria-hidden="true" className="mb-7 block">
+                <svg width="72" height="8" aria-hidden="true" className="mb-7 block print:mb-9">
                   {strip.map((color, i) => (
                     <polygon key={i} points={`${i * 12},8 ${i * 12 + 6},0 ${i * 12 + 12},8`} fill={color} />
                   ))}
@@ -224,12 +241,16 @@ const LetterPage = () => {
               <p className="mb-[22px] font-display text-2xl font-medium leading-[1.3]">{letter.greeting}</p>
               {letter.body.map((paragraph, i) => (
                 <p key={i} className="mb-4 text-[19px] leading-[1.65]">
-                  {paragraph}
+                  {keepPrefixes(paragraph)}
                 </p>
               ))}
               <p className="mb-1 mt-7 text-[19px] italic">{letter.closing}</p>
               <p className="font-display text-[22px] font-medium">{letter.signName}</p>
               <p className="text-[17px] text-ink-soft">{letter.signLine}</p>
+              {/* On paper only, at the foot of the page */}
+              <p className="hidden text-[11pt] text-ink-faint print:fixed print:bottom-[12mm] print:left-[20mm] print:block">
+                Written with Lobola Hub &middot; lobola.dimba.co.za
+              </p>
             </article>
 
             <div className="mt-6 flex flex-wrap gap-3 print:hidden">

@@ -1,7 +1,8 @@
 /**
- * The letter the young man's family sends to ask for a day to visit
- * (stage one of the Zulu guide). The isiZulu wording is still to be read by
- * a fluent speaker or an elder; never change it by machine translation.
+ * The letter the young man's family sends to ask for a visit (stage one of
+ * the Zulu guide). It leaves the day for the bride's family to choose. The
+ * isiZulu wording is still to be read by a fluent speaker or an elder; never
+ * change it by machine translation.
  */
 
 export type LetterLanguage = "en" | "zu";
@@ -12,7 +13,6 @@ export interface LetterFields {
   groom: string;
   brideSurname: string;
   bride: string;
-  date: string; // ISO yyyy-mm-dd, as a date input gives it
   count: string;
   sender: string;
   contact: string;
@@ -33,37 +33,36 @@ export const emptyLetterFields: LetterFields = {
   groom: "",
   brideSurname: "",
   bride: "",
-  date: "",
   count: "",
   sender: "",
   contact: "",
   phone: "",
 };
 
-const EN_MONTHS = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December",
-];
-const EN_DAYS = [
-  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
-];
-const ZU_MONTHS = [
-  "uMasingana", "uNhlolanja", "uNdasa", "uMbasa", "uNhlaba", "uNhlangulana",
-  "uNtulikazi", "uNcwaba", "uMandulo", "uMfumfu", "uLwezi", "uZibandlela",
-];
-const ZU_DAYS = [
-  "ngeSonto", "ngoMsombuluko", "ngoLwesibili", "ngoLwesithathu",
-  "ngoLwesine", "ngoLwesihlanu", "ngoMgqibelo",
+// The number of people in isiZulu, written as a word with the digit beside
+// it: "abane (4)"
+const ZU_PEOPLE = [
+  "omunye", "ababili", "abathathu", "abane", "abahlanu",
+  "abayisithupha", "abayisikhombisa", "abayisishiyagalombili",
+  "abayisishiyagalolunye", "abayishumi", "ishumi nanye", "ishumi nambili",
+  "ishumi nantathu", "ishumi nane", "ishumi nanhlanu", "ishumi nesithupha",
+  "ishumi nesikhombisa", "ishumi nesishiyagalombili",
+  "ishumi nesishiyagalolunye", "amashumi amabili",
 ];
 
-export const formatLetterDate = (iso: string, lang: LetterLanguage) => {
-  // Midday, so the date cannot slip a day in any time zone
-  const d = new Date(iso + "T12:00:00");
-  if (isNaN(d.getTime())) return lang === "zu" ? "[usuku]" : "[date]";
-  if (lang === "zu") {
-    return `${ZU_DAYS[d.getDay()]}, mhla ziyi-${d.getDate()} ${ZU_MONTHS[d.getMonth()]} ${d.getFullYear()}`;
-  }
-  return `${EN_DAYS[d.getDay()]}, ${d.getDate()} ${EN_MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+export const MAX_PEOPLE = ZU_PEOPLE.length;
+
+// A no-break space keeps "abane" and "(4)", and "ishumi nanye", on one line
+const NB_SPACE = " ";
+// "u-" and "no-" belong to the name after them; a non-breaking hyphen keeps
+// the pair together when a line wraps
+export const NB_HYPHEN = "‑";
+
+/** Keeps the count a whole number from 1 to MAX_PEOPLE, or empty */
+export const cleanCount = (value: string) => {
+  const digits = value.replace(/\D/g, "").slice(0, 2);
+  if (!digits) return "";
+  return String(Math.min(Math.max(Number(digits), 1), MAX_PEOPLE));
 };
 
 // A field left empty shows as a [placeholder], so the letter reads whole while
@@ -76,22 +75,24 @@ export const buildLetter = (f: LetterFields, lang: LetterLanguage): Letter => {
   const bs = orPlaceholder(f.brideSurname, "[surname]");
   const g = orPlaceholder(f.groom, "[groom]");
   const b = orPlaceholder(f.bride, "[bride]");
-  const n = orPlaceholder(f.count, "[number]");
+  const count = Number(cleanCount(f.count));
   const s = orPlaceholder(f.sender, "[name]");
   const c = orPlaceholder(f.contact, "[contact]");
-  const ph = orPlaceholder(f.phone, "[phone]");
+  // A phone number reads as one piece, so it never breaks across lines
+  const ph = orPlaceholder(f.phone, "[phone]").replace(/ +/g, NB_SPACE);
   const clan = f.clan.trim();
-  const date = formatLetterDate(f.date, lang);
 
   if (lang === "zu") {
+    const people = count
+      ? `${ZU_PEOPLE[count - 1].replace(/ /g, NB_SPACE)}${NB_SPACE}(${count})`
+      : "[inani]";
     return {
       greeting: `Sanibonani bakwa${bs},`,
       body: [
-        `Thina bakwa${gs}${clan ? ` (${clan})` : ""} sibhala le ncwadi ukuze sazise umndeni wakwa${bs} ukuthi indodana yethu, u-${g}, ifisa ukushada nendodakazi yenu, u-${b}.`,
+        `Thina bakwa${gs}${clan ? ` (${clan})` : ""} sibhala le ncwadi ukuze sazise umndeni wakwa${bs} ukuthi indodana yethu, u${NB_HYPHEN}${g}, ifisa ukushada nendodakazi yenu, u${NB_HYPHEN}${b}.`,
         "Uma nivuma, sicela ukuza ekhaya lenu ukuzocela isandla sakhe nokuqala izingxoxo zamalobolo.",
-        `Singathanda ukuza ${date}. Sizoba ngabantu abayi-${n}.`,
-        "Sicela niphendule le ncwadi, nisazise ukuthi lolu suku luyanilungela yini, noma niphakamise olunye usuku.",
-        `Ningaxhumana no-${c} kule nombolo: ${ph}.`,
+        `Sizoba ngabantu ${people}. Sicela nisazise ukuthi yiluphi usuku olunilungele ukuthi size.`,
+        `Ningaxhumana no${NB_HYPHEN}${c} kule nombolo: ${ph}.`,
       ],
       closing: "Ngenhlonipho,",
       signName: s,
@@ -104,8 +105,7 @@ export const buildLetter = (f: LetterFields, lang: LetterLanguage): Letter => {
     body: [
       `We, the ${gs} family${clan ? ` (${clan})` : ""}, write to let you know that our son, ${g}, wishes to marry your daughter, ${b}.`,
       "With your permission, we ask to visit your home to ask for her hand and to begin lobola negotiations.",
-      `We would like to come on ${date}. We will be a group of ${n} people.`,
-      "Please reply to let us know whether this date suits you, or suggest another day.",
+      `We will be a group of ${count || "[number]"} ${count === 1 ? "person" : "people"}. Please let us know which day suits you for us to visit.`,
       `You can reach ${c} on ${ph}.`,
     ],
     closing: "With respect,",
@@ -123,4 +123,8 @@ export const letterToText = (letter: Letter) =>
     letter.closing,
     letter.signName,
     letter.signLine,
-  ].join("\n");
+  ]
+    .join("\n")
+    // A plain hyphen in shared text, where a non-breaking one may not display
+    .split(NB_HYPHEN)
+    .join("-");

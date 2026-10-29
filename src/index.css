@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* No page margin, so the browser prints no date, title, address or page
+   number; the printed letter brings its own margin */
+@page {
+  margin: 0;
+}
+
 @layer base {
   h1, h2, h3 {
     font-family: 'Playfair Display', serif;
