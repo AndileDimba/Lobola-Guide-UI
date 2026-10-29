@@ -223,7 +223,7 @@ export const zuluData: NationData = {
       zuluTitle: "Umshado",
       summary:
         "A wedding day is set and the bride's party arrives in procession. " +
-        "On the dance ground the chief's policeman asks the bride whether she " +
+        "On the dance ground (isigcawu) the chief's policeman asks the bride whether she " +
         "loves the groom. She answers by starting a song and dancing " +
         "(ukusina), then gives the policeman a mat as a sign of her agreement. " +
         "Later that same day she gives umabo, her gifts to the groom's family.",
