@@ -4,13 +4,14 @@ export const zuluData: NationData = {
   id: "zulu",
   nationName: "Zulu (AmaZulu)",
   theme: {
-    primary: "bg-white",
-    headerBg: "bg-white",
-    accent: "text-yellow-600",
-    border: "border-yellow-600",
-    ring: "ring-yellow-100",
-    button: "bg-yellow-600 hover:bg-yellow-700 text-white",
-    iconColor: "#ca8a04", // Gold
+    primary: "bg-clay",
+    headerBg: "bg-paper",
+    accent: "text-clay",
+    border: "border-clay",
+    ring: "ring-clay/20",
+    button: "bg-clay hover:bg-clay-dark text-paper",
+    iconColor: "#A2431F", // Clay
+    beads: ["#231A14", "#B3341F", "#FBF6EC", "#2A5C8F"],
   },
   steps: [
     {

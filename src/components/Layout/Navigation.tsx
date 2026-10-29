@@ -5,7 +5,9 @@ const Navigation = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
-  const isActive = (path: string) => location.pathname === path;
+  // Prefix match so each stage at /guide/zulu/<stage> keeps the guide link lit
+  const isActive = (path: string) =>
+    path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
   
   const closeMenu = () => setIsMenuOpen(false);
 

@@ -14,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/guide/zulu" element={<ZuluGuidePage />} />
+          <Route path="/guide/zulu/:stageId" element={<ZuluGuidePage />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

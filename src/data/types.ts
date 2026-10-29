@@ -6,6 +6,9 @@ export interface Theme {
   ring: string;
   button: string;
   iconColor: string;
+  // Raw hex for the beadwork band, ground colour first, then the bead colours
+  // repeated along it. Hex rather than classes because they feed SVG fills.
+  beads?: string[];
 }
 
 /**
@@ -57,6 +60,7 @@ export interface Step {
   id: string;
   title: string;
   zuluTitle?: string; // optional isiZulu name of the stage
+  summary?: string; // English summary, shown before the isiZulu description
   description: string;
   details: string[];
   scene?: Scene; // optional narrative layer; renders as a story when present
@@ -67,14 +71,4 @@ export interface NationData {
   nationName: string;
   theme: Theme;
   steps: Step[];
-}
-
-export interface StepCardProps {
-  step: Step;
-  isActive: boolean;
-  isCompleted?: boolean;
-  theme: Theme;
-  onComplete: () => void;
-  onActivate?: () => void;
-  index?: number;
 }
