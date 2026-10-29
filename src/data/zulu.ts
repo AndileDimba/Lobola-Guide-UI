@@ -17,6 +17,7 @@ export const zuluData: NationData = {
     {
       id: "sending_of_the_letter",
       title: "Sending of the Letter",
+      zuluTitle: "Incwadi Yokucela Usuku",
       summary:
         "The young man sends a letter from his home to the young woman's home. " +
         "In it, his family asks to come on a chosen day to ask for a new kinship.",
@@ -37,6 +38,7 @@ export const zuluData: NationData = {
     {
       id: "choosing_negotiators",
       title: "Choosing Negotiators (Uncles)",
+      zuluTitle: "Ukukhethwa Kwabakhongi",
       summary:
         "Before anyone travels, the family chooses the abakhongi who will go to " +
         "ask for a good kinship: the umkhongi omkhulu who leads, the umkhongi " +
@@ -60,7 +62,7 @@ export const zuluData: NationData = {
     {
       id: "negotiations_day_umcelo",
       title: "Negotiations Day",
-      zuluTitle: "Umcelo",
+      zuluTitle: "Usuku Lwamalobo (Umcelo)",
       description:
         "Ngosuku olubekiwe, abakhongi bayavuka ekuseni baya esangweni lakubo kwentombi, babize izithakazelo, bese beqala izinkulumo zokucela isihlobo.",
       details: [
@@ -218,11 +220,13 @@ export const zuluData: NationData = {
     {
       id: "wedding_day_umabo_umshado",
       title: "Wedding Day",
-      zuluTitle: "Umabo/Umshado",
+      zuluTitle: "Umshado",
       summary:
-        "A wedding day is set. The bride and her companions arrive in " +
-        "procession, and the customary ceremonies are held, with singing, " +
-        "dancing, and the bride's public consent to the marriage.",
+        "A wedding day is set and the bride's party arrives in procession. " +
+        "On the dance ground the chief's policeman asks the bride whether she " +
+        "loves the groom. She answers by starting a song and dancing " +
+        "(ukusina), then gives the policeman a mat as a sign of her agreement. " +
+        "Later that same day she gives umabo, her gifts to the groom's family.",
       description:
         "Kukhishwa usuku lomshado, umakoti nozakwabo bahamba nomkhosi, kwenziwa imicimbi yesiko, kuhlanganisa ukucula, ukudansa, nokuvuma umthetho womshado.",
       details: [
