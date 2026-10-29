@@ -53,10 +53,10 @@ const ZU_PEOPLE = [
 export const MAX_PEOPLE = ZU_PEOPLE.length;
 
 // A no-break space keeps "abane" and "(4)", and "ishumi nanye", on one line
-const NB_SPACE = " ";
+const NB_SPACE = "\u00A0";
 // "u-" and "no-" belong to the name after them; a non-breaking hyphen keeps
 // the pair together when a line wraps
-export const NB_HYPHEN = "‑";
+export const NB_HYPHEN = "\u2011";
 
 /** Keeps the count a whole number from 1 to MAX_PEOPLE, or empty */
 export const cleanCount = (value: string) => {
