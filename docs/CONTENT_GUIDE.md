@@ -25,10 +25,14 @@ In practice:
   *abakhongi* and explain who they are; do not reduce them to "the negotiating
   party" and lose the word. A term that has no real English equivalent stays in
   isiZulu.
-- **Show spoken words in full isiZulu with English underneath.** Izithakazelo,
-  the greeting called at the gate, what an uncle says when the gate opens — these
-  live in the `voice` field, isiZulu prominent, English gloss beneath. Never
-  paraphrase a spoken line into English only.
+- **Show spoken words in full isiZulu, after the English.** Izithakazelo,
+  the greeting called at the gate, what an uncle says when the gate opens: these
+  live in the `voice` field. The page shows the English first and then the
+  isiZulu in full, set larger so it carries the weight. Never paraphrase a
+  spoken line into English only.
+- **English first, isiZulu second, everywhere.** Stage names go in `title`
+  (English) and `zuluTitle` (isiZulu), never mixed in one string. A stage whose
+  `description` is isiZulu gets an English `summary` to lead the page.
 - **Never leave isiZulu without a gloss.** Every isiZulu string a reader sees
   should have English within reach. (Some existing content predates this rule and
   is isiZulu-only — adding the English is a welcome contribution.)
@@ -118,7 +122,7 @@ be upgraded one at a time.
       "sets the date everything else is built around.",
 
     // The isiZulu voice of this moment: what is actually said, in full,
-    // with an English gloss beneath and a note on when it is spoken.
+    // with its English meaning and a note on when it is spoken.
     voice: {
       zu: "Sicela usuku lokuza kucela isihlobo esihle.",
       en: "We ask for a day to come and ask for a good kinship.",

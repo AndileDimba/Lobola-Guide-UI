@@ -70,9 +70,10 @@ say what you know.
 
 - **Landing / hub** — what lobola is and is not, why it matters, quick facts,
   "Explore by Nation" (Zulu live; Xhosa, Sotho, Tswana coming), FAQ teaser
-- **Zulu guide** — seven stages with progress tracking saved to `localStorage`,
-  expand/collapse cards, and an optional "scene" layer that renders a stage as a
-  story: narration, the isiZulu voice, the people present, the beats
+- **Zulu guide**: seven stages laid out as chapters of a book, each at its own
+  address, with a journey line, Previous and Next links, and a scene slot on
+  every stage. A stage with a "scene" renders as a story: narration, the
+  isiZulu voice, the people present, the beats
 - **FAQ** — substantial answers with category filtering
 - **Responsive navigation** with a hamburger menu on small screens
 
@@ -119,7 +120,7 @@ src/
 ├── pages/                  # LandingPage, ZuluGuidePage, FAQPage, NotFoundPage
 ├── components/
 │   ├── Layout/             # Header, Navigation, Footer, ScrollToTop
-│   ├── UI/                 # StepCard (the frame), SceneView (the story)
+│   ├── UI/                 # StageChapter (the page), SceneView (the story), Journey
 │   └── Icons/
 ├── data/
 │   ├── types.ts            # The content contract — read this first
@@ -130,9 +131,9 @@ docs/                       # Roadmap, architecture, content guide
 
 ## Architecture in one idea
 
-**Components are nation-agnostic; the culture lives in data.** A `StepCard`
+**Components are nation-agnostic; the culture lives in data.** A `StageChapter`
 knows nothing about Zulu practice — it receives a `Step` and a `Theme` and
-renders what it is given. That is why there is no `components/zulu/StepCard.tsx`
+renders what it is given. That is why there is no `components/zulu/StageChapter.tsx`
 and why adding Xhosa later should be a data file, not a component fork.
 
 Content shape is defined once in [`src/data/types.ts`](src/data/types.ts), and

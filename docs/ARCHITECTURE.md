@@ -16,7 +16,7 @@ way unless there is a strong reason.
 
 **Components are nation-agnostic; the culture lives in data.**
 
-A `StepCard` knows nothing about Zulu practice. It receives a `Step` and a
+A `StageChapter` knows nothing about Zulu practice. It receives a `Step` and a
 `Theme` and renders what it is given. That is why there is no
 `components/zulu/...` directory and why adding Xhosa later should be a new data
 file plus a nation entry, not a fork of the components.
@@ -35,25 +35,28 @@ something belongs in data instead.
 src/
 ├── main.tsx                    React entry point
 ├── App.tsx                     Routes + shared layout (Header, Footer, ScrollToTop)
-├── index.css / App.css         Tailwind entry + a little global CSS
+├── index.css                   Tailwind entry + a little global CSS
 ├── pages/
 │   ├── LandingPage.tsx         The hub: what lobola is / is not, nation grid, FAQ teaser
-│   ├── ZuluGuidePage.tsx       The Zulu journey: stages, progress, localStorage
+│   ├── ZuluGuidePage.tsx       The Zulu journey: picks the stage from the URL
 │   ├── FAQPage.tsx             FAQ content + category filtering
 │   └── NotFoundPage.tsx
 ├── components/
 │   ├── Layout/                 Header, Navigation (responsive), Footer, ScrollToTop
 │   ├── UI/
-│   │   ├── StepCard.tsx        A stage: expand/collapse, completion, renders SceneView
-│   │   └── SceneView.tsx       A stage as a story: media, narration, voice, roles, beats
+│   │   ├── StageChapter.tsx    A stage as a chapter: titles, lede, scene slot, Previous/Next
+│   │   ├── SceneFigure.tsx     The scene slot: media, or a placeholder of the same size
+│   │   ├── SceneView.tsx       A stage as a story: roles, voice, beats, the varies note
+│   │   ├── Journey.tsx         The journey line (wide screens) and progress bar (phones)
+│   │   └── BeadBand.tsx        The thin beadwork band, coloured by theme.beads
 │   └── Icons/
 └── data/
     ├── types.ts                The content contract — read this first
     └── zulu.ts                 All Zulu content (theme + stages + scenes)
 ```
 
-Routes (in `App.tsx`): `/` landing, `/guide/zulu` the guide, `/faq`, `*` not
-found.
+Routes (in `App.tsx`): `/` landing, `/guide/zulu` the guide (first stage),
+`/guide/zulu/:stageId` one stage by its `id`, `/faq`, `*` not found.
 
 ## The content model
 
@@ -87,13 +90,20 @@ Two properties of this model are deliberate and worth protecting:
    can. `iconColor` is the one raw hex value, because it feeds SVG props rather
    than a class attribute.
 
-## Presentation: card versus scene
+## Presentation: chapter and scene
 
-`StepCard` is the frame — number, title, expand/collapse, the completion
-control. When the step carries a `scene`, the card hands off to `SceneView`,
-which renders the story: media (or a captioned placeholder while `src` is
-empty), the English narration, the isiZulu voice in full with its gloss, who is
-present, then the beats.
+The guide reads like a printed book: one left-aligned column, the journey line
+beside it on wide screens, and Previous and Next links at the foot of each
+stage. `StageChapter` is the frame: the English title with the isiZulu name
+beneath, then the lede (the scene's narration, or the English `summary`)
+followed by the isiZulu `description`. Every stage has a scene slot
+(`SceneFigure`), showing the media or a placeholder of the same size, so the
+page keeps its shape as stages are upgraded. When the step carries a `scene`,
+`SceneView` renders the rest of the story: who is present, what is said, then
+the beats. Without one, the `details` list stands in.
+
+On a phone the scene slot moves above the lede, and the journey folds into a
+progress bar with an "All stages" list.
 
 Anything about *how a story looks* belongs in `SceneView`. Anything about *what
 the story is* belongs in `zulu.ts`.
@@ -102,9 +112,8 @@ the story is* belongs in `zulu.ts`.
 
 There is no state library and none is needed yet.
 
-- The active stage and completion set live in `ZuluGuidePage` component state.
-- Completion is persisted to `localStorage`, so progress survives a refresh
-  until the reset control clears it.
+- The current stage lives in the URL, so a stage can be shared and the back
+  button walks the journey.
 - No backend, no API, no analytics. Everything ships as static assets.
 
 ## Styling
