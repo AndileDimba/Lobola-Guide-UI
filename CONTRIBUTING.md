@@ -87,13 +87,17 @@ direction.
 
 ## How we work
 
-`main` stays deployable — it is what Vercel serves. All work happens on a branch
-and lands through a pull request.
+`main` stays deployable: it is what Vercel serves. `dev` is where work comes
+together first. Branch from `dev`, open your pull request against `dev`, and
+`dev` is merged into `main` when it is ready to go live.
 
 ```bash
+git switch dev
+git pull
 git switch -c feature/glossary-tooltips
 # ... work ...
 git push -u origin feature/glossary-tooltips
+# open the pull request with dev as the base branch
 ```
 
 Branch naming, following what is already in the history:
