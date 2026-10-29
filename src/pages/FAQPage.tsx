@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import type { ReactNode } from 'react';
 
 interface FAQ {
   id: string;
@@ -123,13 +123,36 @@ const categoryLabels: Record<string, string> = {
   family: 'Family Dynamics'
 };
 
-const categoryColors: Record<string, string> = {
-  basics: 'bg-amber-100 text-amber-700',
-  process: 'bg-blue-100 text-blue-700',
-  costs: 'bg-emerald-100 text-emerald-700',
-  modern: 'bg-purple-100 text-purple-700',
-  family: 'bg-rose-100 text-rose-700'
-};
+// Answers are written as plain text: blank lines split paragraphs, and lines
+// starting with "• " become a list
+const renderAnswer = (answer: string) =>
+  answer.split('\n\n').flatMap((block, b) => {
+    const parts: ReactNode[] = [];
+    let bullets: string[] = [];
+    const flush = () => {
+      if (bullets.length === 0) return;
+      parts.push(
+        <ul key={`${b}-${parts.length}`} className="list-disc space-y-1.5 pl-[22px]">
+          {bullets.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      );
+      bullets = [];
+    };
+    for (const line of block.split('\n')) {
+      if (line.startsWith('• ')) {
+        bullets.push(line.slice(2));
+      } else {
+        flush();
+        parts.push(<p key={`${b}-${parts.length}`}>{line}</p>);
+      }
+    }
+    flush();
+    return parts;
+  });
+
+const eyebrow = 'text-[13px] font-medium uppercase leading-snug tracking-[0.16em]';
 
 const FAQPage = () => {
   const [openId, setOpenId] = useState<string | null>(null);
@@ -139,113 +162,119 @@ const FAQPage = () => {
     setOpenId(openId === id ? null : id);
   };
 
-  const filteredFaqs = selectedCategory 
+  const filteredFaqs = selectedCategory
     ? faqs.filter(faq => faq.category === selectedCategory)
     : faqs;
 
   const categories = Array.from(new Set(faqs.map(f => f.category)));
+  const topics: { id: string | null; label: string }[] = [
+    { id: null, label: 'All questions' },
+    ...categories.map((cat) => ({ id: cat, label: categoryLabels[cat] })),
+  ];
 
   return (
-    <div className="bg-stone-50 min-h-screen">
-      {/* Header */}
-      <header className="bg-gradient-to-br from-stone-800 to-stone-900 text-white py-16 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-stone-400 hover:text-white mb-6 transition-colors"
-          >
-            <span>←</span>
-            <span>Back to Lobola Hub</span>
-          </Link>
-          
-          <h1 className="text-4xl md:text-5xl font-black mb-4">
-            Frequently Asked Questions
+    <div className="flex-1 bg-paper font-reading text-lg leading-[1.65] text-ink lg:text-xl lg:leading-[1.7]">
+      <div className="mx-auto max-w-[1120px] px-5 pb-12 pt-9 lg:px-8 lg:pb-20 lg:pt-14">
+        <header className="lg:ml-[312px] lg:max-w-[660px]">
+          <h1 className="font-display text-[2.75rem] font-semibold leading-[1.05] tracking-[-0.01em] lg:text-[4rem]">
+            Frequently asked questions
           </h1>
-          <p className="text-lg text-stone-300 max-w-2xl mx-auto">
-            Answers to the most common questions about lobola — from traditions to modern adaptations.
+          <p className="mt-4 text-[1.3125rem] leading-[1.55] lg:mt-5 lg:text-2xl">
+            Answers to the most common questions about lobola, from traditions to modern adaptations.
           </p>
-        </div>
-      </header>
+        </header>
 
-      {/* Category Filter */}
-      <div className="max-w-4xl mx-auto px-6 py-8">
-        <div className="flex flex-wrap gap-2 justify-center">
-          <button
-            onClick={() => setSelectedCategory(null)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-              selectedCategory === null
-                ? 'bg-stone-900 text-white'
-                : 'bg-stone-200 text-stone-600 hover:bg-stone-300'
-            }`}
-          >
-            All Questions
-          </button>
-          {categories.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                selectedCategory === cat
-                  ? 'bg-stone-900 text-white'
-                  : `${categoryColors[cat]} hover:opacity-80`
-              }`}
-            >
-              {categoryLabels[cat]}
-            </button>
-          ))}
+        <div className="mt-8 flex flex-col gap-8 lg:mt-12 lg:flex-row lg:items-start lg:gap-[72px]">
+          {/* Topics: a wrapping row on a phone, a list beside the questions on a wide screen */}
+          <nav aria-label="Topics" className="lg:sticky lg:top-24 lg:w-60 lg:flex-shrink-0">
+            <p className={`mb-2 lg:mb-4 ${eyebrow} text-ink-soft`}>Topics</p>
+            <ul className="flex flex-wrap gap-x-6 lg:flex-col lg:gap-0">
+              {topics.map((topic) => {
+                const isSelected = selectedCategory === topic.id;
+                return (
+                  <li key={topic.label}>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedCategory(topic.id)}
+                      aria-pressed={isSelected}
+                      className={`min-h-11 py-2 text-left text-[17px] decoration-1 underline-offset-[6px] hover:underline lg:text-lg ${
+                        isSelected ? 'font-medium text-ink underline decoration-2' : 'text-ink-soft hover:text-ink'
+                      }`}
+                    >
+                      {topic.label}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+
+          <main className="min-w-0 max-w-[660px] flex-1">
+            <ul className="border-b border-t-2 border-b-rule border-t-ink-deep">
+              {filteredFaqs.map((faq, index) => {
+                const isOpen = openId === faq.id;
+                return (
+                  <li key={faq.id} className={index > 0 ? 'border-t border-rule' : ''}>
+                    <h2>
+                      <button
+                        type="button"
+                        onClick={() => toggleFAQ(faq.id)}
+                        aria-expanded={isOpen}
+                        aria-controls={`answer-${faq.id}`}
+                        className="group flex w-full items-start gap-4 py-5 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink lg:py-6"
+                      >
+                        <span className="flex-1">
+                          <span className={`block ${eyebrow} text-ink-soft`}>
+                            {categoryLabels[faq.category]}
+                          </span>
+                          <span className="mt-1.5 block font-display text-[1.375rem] font-semibold leading-snug decoration-1 underline-offset-4 group-hover:underline lg:text-2xl">
+                            {faq.question}
+                          </span>
+                        </span>
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          aria-hidden="true"
+                          className="mt-7 flex-shrink-0 text-ink-soft"
+                        >
+                          <path d="M5 12h14" />
+                          {!isOpen && <path d="M12 5v14" />}
+                        </svg>
+                      </button>
+                    </h2>
+                    {isOpen && (
+                      <div id={`answer-${faq.id}`} className="animate-fade-in space-y-4 pb-7">
+                        {renderAnswer(faq.answer)}
+                      </div>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+
+            <section aria-labelledby="suggest-title" className="mt-12 lg:mt-16">
+              <h2 id="suggest-title" className="font-display text-[1.625rem] font-semibold leading-tight lg:text-[1.875rem]">
+                Have a question we haven't answered?
+              </h2>
+              <p className="mt-2.5 lg:mt-3">
+                We're building this resource with community input. Your question could help others.
+              </p>
+              <button
+                type="button"
+                className="mt-6 inline-flex min-h-[52px] items-center justify-center border-2 border-ink-deep px-7 text-lg font-medium transition-colors hover:bg-ink-deep hover:text-paper"
+                onClick={() => alert('Suggestion feature coming soon!')}
+              >
+                Suggest a question
+              </button>
+            </section>
+          </main>
         </div>
       </div>
-
-      {/* FAQ List */}
-      <main className="max-w-4xl mx-auto px-6 pb-16">
-        <div className="space-y-4">
-          {filteredFaqs.map((faq) => (
-            <div
-              key={faq.id}
-              className="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden"
-            >
-              <button
-                onClick={() => toggleFAQ(faq.id)}
-                className="w-full px-6 py-5 flex items-start gap-4 text-left hover:bg-stone-50 transition-colors"
-              >
-                <span className={`mt-0.5 px-3 py-1 rounded-full text-xs font-medium ${categoryColors[faq.category]}`}>
-                  {categoryLabels[faq.category]}
-                </span>
-                <div className="flex-1">
-                  <h3 className="text-lg font-bold text-stone-900">{faq.question}</h3>
-                </div>
-                <span className={`text-2xl text-stone-400 transition-transform ${openId === faq.id ? 'rotate-45' : ''}`}>
-                  +
-                </span>
-              </button>
-              
-              {openId === faq.id && (
-                <div className="px-6 pb-6 pt-2">
-                  <div className="pl-20 text-stone-700 leading-relaxed whitespace-pre-line">
-                    {faq.answer}
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* More Questions CTA */}
-        <div className="mt-12 text-center p-8 bg-amber-50 rounded-2xl border border-amber-100">
-          <h3 className="text-xl font-bold text-stone-900 mb-2">
-            Have a question we haven't answered?
-          </h3>
-          <p className="text-stone-600 mb-4">
-            We're building this resource with community input. Your question could help others.
-          </p>
-          <button 
-            className="inline-flex items-center gap-2 bg-amber-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-amber-600 transition-colors"
-            onClick={() => alert('Suggestion feature coming soon!')}
-          >
-            <span>Suggest a Question</span>
-          </button>
-        </div>
-      </main>
     </div>
   );
 };

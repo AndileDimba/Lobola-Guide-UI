@@ -2,21 +2,33 @@ import { Link } from 'react-router-dom';
 
 const NotFoundPage = () => {
   return (
-    <div className="min-h-[70vh] flex items-center justify-center bg-stone-50 px-6">
-      <div className="text-center max-w-md mx-auto">
-        <div className="w-24 h-24 bg-stone-200 rounded-full flex items-center justify-center mx-auto mb-6">
-          <span className="text-4xl">🕵️‍♂️</span>
+    <div className="flex-1 bg-paper font-reading text-lg leading-[1.65] text-ink lg:text-xl lg:leading-[1.7]">
+      <div className="mx-auto max-w-[1120px] px-5 pb-16 pt-12 lg:px-8 lg:pb-24 lg:pt-20">
+        <div className="max-w-[660px]">
+          <p className="mb-3 text-[13px] font-medium uppercase leading-snug tracking-[0.16em] text-clay lg:mb-4">
+            Page not found
+          </p>
+          <h1 className="font-display text-[2.75rem] font-semibold leading-[1.05] tracking-[-0.01em] lg:text-[4rem]">
+            This page is not here
+          </h1>
+          <p className="mt-5 text-[1.3125rem] leading-[1.55] lg:mt-6 lg:text-2xl">
+            We couldn't find the page you're looking for. It might have been moved or doesn't exist.
+          </p>
+          <div className="mt-8 flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-8 sm:gap-y-3">
+            <Link
+              to="/"
+              className="inline-flex min-h-[52px] items-center justify-center bg-clay px-7 text-lg font-medium text-paper transition-colors hover:bg-clay-dark"
+            >
+              Return home
+            </Link>
+            <Link
+              to="/guide/zulu"
+              className="py-3 text-center text-lg underline decoration-1 underline-offset-[6px] hover:decoration-2"
+            >
+              Start the Zulu guide
+            </Link>
+          </div>
         </div>
-        <h1 className="text-4xl font-black text-stone-900 mb-4">Page Not Found</h1>
-        <p className="text-lg text-stone-600 mb-8">
-          We couldn't find the page you're looking for. It might have been moved or doesn't exist.
-        </p>
-        <Link
-          to="/"
-          className="inline-flex items-center justify-center gap-2 bg-stone-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-stone-800 transition-colors"
-        >
-          Return Home
-        </Link>
       </div>
     </div>
   );
