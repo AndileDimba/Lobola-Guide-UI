@@ -79,7 +79,7 @@ export const zuluData: NationData = {
       scene: {
         narration:
           "At first light, the groom's chosen negotiators arrive at the gate of the " +
-          "bride's home. They do not simply knock — they announce themselves by calling " +
+          "bride's home. They do not simply knock. They announce themselves by calling " +
           "the family's praises, making clear they have come in peace, to ask for kinship. " +
           "It is common to be kept waiting at the gate for a long time; a child may be " +
           "sent to sit or lie before it, and the negotiators offer a small gift to open " +
@@ -132,12 +132,12 @@ export const zuluData: NationData = {
         ],
         media: {
           kind: "illustration",
-          src: "/scenes/umcelo-fire.svg",
-          alt: "The two families sit facing each other around a small fire, between two huts at dusk.",
+          src: "/scenes/umcelo.svg",
+          alt: "The two families sit facing each other at the bride's home, between two huts.",
           // isiZulu caption to come from the cultural owner; the old one
           // described the gate, not this scene
           caption: {
-            en: "The two families meet at the fire.",
+            en: "The two families meet at the bride's home.",
           },
         },
         variesNote:
