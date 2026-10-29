@@ -5,7 +5,6 @@ import FAQPage from './pages/FAQPage';
 import NotFoundPage from './pages/NotFoundPage';
 import Navigation from './components/Layout/Navigation';
 import Footer from './components/Layout/Footer';
-import './App.css';
 
 function App() {
   return (
