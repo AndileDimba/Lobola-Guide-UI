@@ -75,7 +75,7 @@ const nations: {
     id: "xhosa",
     name: "Xhosa",
     ownName: "AmaXhosa",
-    description: "Known for distinctive customs including ukuthwala and elaborate umembeso celebrations.",
+    description: "Known for distinctive customs, including elaborate umembeso celebrations.",
   },
   {
     id: "sotho",
