@@ -116,7 +116,7 @@ approval, which [CODEOWNERS](.github/CODEOWNERS) requests automatically.
 The architecture has one central idea: **UI components are nation-agnostic; the
 culture lives in data.** Keep it that way.
 
-- **No nation-specific components.** There is no `components/zulu/StepCard.tsx`
+- **No nation-specific components.** There is no `components/zulu/StageChapter.tsx`
   and there should never be. Components receive `NationData`, `Step`, `Scene` and
   `Theme` and render whatever they are given, so adding Xhosa later is a data
   file, not a component fork.
