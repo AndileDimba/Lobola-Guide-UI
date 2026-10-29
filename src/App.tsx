@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="min-h-screen bg-stone-50 font-sans flex flex-col">
       <Navigation />
-      <main className="flex-1">
+      <main className="flex flex-1 flex-col">
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/guide/zulu" element={<ZuluGuidePage />} />

@@ -21,10 +21,10 @@ const ZuluGuidePage = () => {
   const journey = { steps, currentIndex: index, theme, hrefFor };
 
   return (
-    <div className="bg-paper font-reading text-lg leading-[1.65] text-ink lg:text-xl lg:leading-[1.7]">
+    <div className="flex flex-1 flex-col bg-paper font-reading text-lg leading-[1.65] text-ink lg:text-xl lg:leading-[1.7]">
       <BeadBand colors={theme.beads} />
 
-      <div className="mx-auto flex max-w-[1120px] flex-col gap-6 px-5 pb-10 pt-6 lg:flex-row lg:items-start lg:gap-[72px] lg:px-8 lg:pt-14">
+      <div className="mx-auto flex w-full max-w-[1120px] flex-1 flex-col gap-6 px-5 pb-10 pt-6 lg:flex-row lg:items-start lg:gap-[72px] lg:px-8 lg:pt-14">
         <aside
           aria-label="The journey"
           className="hidden w-60 flex-shrink-0 lg:sticky lg:top-24 lg:block"
