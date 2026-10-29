@@ -6,8 +6,8 @@ export default {
   ],
   theme: {
     extend: {
-      // The printed-book palette shared by every nation's guide. Accents such as
-      // clay are only referenced through a nation's theme, never in a component.
+      // The printed-book palette shared by the whole site. Clay is the hub's own
+      // accent; inside a nation's guide, components reach it only through theme.
       colors: {
         paper: "#F3EADB",
         rule: "#CDBA9C",
