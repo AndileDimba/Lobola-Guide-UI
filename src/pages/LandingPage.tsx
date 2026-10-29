@@ -126,14 +126,14 @@ const LandingPage = () => {
 
         <figure className="-mx-5 mt-6 sm:mx-0 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:mt-0 lg:self-center">
           <img
-            src="/scenes/umcelo-fire.svg"
-            alt="Two families sit facing each other around a small fire, between two huts at dusk."
+            src="/scenes/umcelo.svg"
+            alt="Two families sit facing each other at the bride's home, between two huts."
             width={680}
             height={300}
             className="block h-auto w-full"
           />
           <figcaption className="mx-5 mt-2 text-[15px] italic leading-normal text-ink-soft sm:mx-0 lg:mt-2.5 lg:text-base">
-            From the Zulu guide, stage three. The two families meet at the fire.
+            From the Zulu guide, stage three. The two families meet at the bride's home.
           </figcaption>
         </figure>
 
