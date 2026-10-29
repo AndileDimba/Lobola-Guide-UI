@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-paper text-ink-soft font-reading border-t border-rule">
+    <footer className="bg-paper text-ink-soft font-reading border-t border-rule print:hidden">
       <div className="max-w-[1120px] mx-auto px-5 pt-8 pb-10 lg:px-8 lg:pt-10 lg:pb-12">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
@@ -27,6 +27,11 @@ const Footer = () => {
               <li>
                 <Link to="/guide/zulu" className="text-ink hover:underline underline-offset-4">
                   Zulu Lobola Guide
+                </Link>
+              </li>
+              <li>
+                <Link to="/letter" className="text-ink hover:underline underline-offset-4">
+                  Letter builder
                 </Link>
               </li>
               <li>

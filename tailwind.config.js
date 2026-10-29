@@ -9,7 +9,10 @@ export default {
       // The printed-book palette shared by the whole site. Clay is the hub's own
       // accent; inside a nation's guide, components reach it only through theme.
       colors: {
-        paper: "#F3EADB",
+        paper: {
+          DEFAULT: "#F3EADB",
+          light: "#FBF6EC", // the sheet of a letter laid on the page
+        },
         rule: "#CDBA9C",
         ink: {
           DEFAULT: "#2B1E16",

@@ -93,20 +93,40 @@ const StageChapter: React.FC<StageChapterProps> = ({
             <h2 className="mb-2.5 font-display text-[1.625rem] font-semibold leading-tight lg:mb-3 lg:text-[1.875rem]">
               What happens
             </h2>
-            <ul lang="zu" className="space-y-3">
+            <ul className="space-y-4 lg:space-y-5">
               {step.details.map((detail, i) => (
                 <li key={i} className="flex gap-3">
                   <span
                     className={`mt-[0.7em] h-1.5 w-1.5 flex-shrink-0 rounded-full ${theme.primary}`}
                     aria-hidden="true"
                   />
-                  {detail}
+                  <div>
+                    <p>{detail.en}</p>
+                    {detail.zu && (
+                      <p lang="zu" className="mt-1 text-base italic text-ink-soft lg:text-lg">
+                        {detail.zu}
+                      </p>
+                    )}
+                  </div>
                 </li>
               ))}
             </ul>
           </>
         )}
       </div>
+
+      {step.tool && (
+        <aside className="mt-9 border-t border-rule pt-6 lg:mt-11 lg:pt-7">
+          <p>{step.tool.description}</p>
+          <Link
+            to={step.tool.to}
+            className={`mt-4 inline-flex min-h-[52px] items-center justify-center gap-2.5 px-7 text-lg font-medium transition-colors ${theme.button}`}
+          >
+            {step.tool.label}
+            <Arrow direction="next" />
+          </Link>
+        </aside>
+      )}
 
       <nav
         aria-label="Stage navigation"

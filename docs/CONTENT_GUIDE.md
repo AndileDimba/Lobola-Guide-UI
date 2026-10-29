@@ -96,7 +96,10 @@ A stage starts life as text — a `description` and a list of `details`:
   id: "sending_of_the_letter",
   title: "Sending of the Letter",
   description: "...",
-  details: ["...", "..."],
+  details: [
+    // What happens: English first, the isiZulu shown beneath it in italics
+    { en: "...", zu: "..." },
+  ],
 }
 ```
 
@@ -108,9 +111,9 @@ be upgraded one at a time.
 {
   id: "sending_of_the_letter",
   title: "Sending of the Letter",
-  zuluTitle: "Incwadi",              // the isiZulu name of the stage
+  zuluTitle: "Incwadi Yokucela Usuku", // the isiZulu name of the stage
   description: "...",
-  details: ["...", "..."],           // keep these — they are the fallback
+  details: [{ en: "...", zu: "..." }], // keep these, they are the fallback
   scene: {
     // English narration — the doorway into the scene. Present tense, told as
     // something you are watching happen. Hedged, not prescriptive.

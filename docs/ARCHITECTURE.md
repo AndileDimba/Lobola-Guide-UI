@@ -56,7 +56,8 @@ src/
 ```
 
 Routes (in `App.tsx`): `/` landing, `/guide/zulu` the guide (first stage),
-`/guide/zulu/:stageId` one stage by its `id`, `/faq`, `*` not found.
+`/guide/zulu/:stageId` one stage by its `id`, `/letter` the letter builder,
+`/faq`, `*` not found.
 
 ## The content model
 
@@ -67,8 +68,10 @@ NationData
 ├── id, nationName
 ├── theme: Theme            Tailwind class strings — the nation's "skin"
 └── steps: Step[]
-     ├── id, title, zuluTitle?, description, details[]
+     ├── id, title, zuluTitle?, summary?, description
+     ├── details: Bilingual[]  What happens: en, with the isiZulu beneath
      ├── media?             A picture for the scene slot before the stage has a scene
+     ├── tool?              A link to a page that helps do this stage (to, label, description)
      └── scene?             The optional story layer
           ├── narration     English narration (required within a scene)
           ├── voice?        Phrase: isiZulu spoken line + English gloss + note
@@ -115,7 +118,14 @@ There is no state library and none is needed yet.
 
 - The current stage lives in the URL, so a stage can be shared and the back
   button walks the journey.
-- No backend, no API, no analytics. Everything ships as static assets.
+- The letter builder keeps its form in `localStorage` (key
+  `lobola-hub:letter`), so a half-finished letter is still there next time.
+  Nothing typed into it is sent anywhere. Its wording lives in
+  `src/data/letter.ts`; the page prints only the letter.
+- No backend and no API. Everything ships as static assets.
+- Vercel Web Analytics counts page views (no cookies). The letter builder also
+  sends a `Letter shared` event with only the method (`whatsapp`, `print`,
+  `copy`) and the language; custom events are counted on Vercel Pro only.
 
 ## Styling
 

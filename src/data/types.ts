@@ -58,14 +58,22 @@ export interface Scene {
   variesNote?: string; // the humble "commonly… families and regions differ" line
 }
 
+/** A link from a stage to a page that helps the reader do that stage */
+export interface StageTool {
+  to: string;
+  label: string;
+  description: string;
+}
+
 export interface Step {
   id: string;
   title: string;
   zuluTitle?: string; // optional isiZulu name of the stage
   summary?: string; // English summary, shown before the isiZulu description
   description: string;
-  details: string[];
+  details: Bilingual[]; // what happens, English first with the isiZulu beneath
   media?: Media; // a picture for the scene slot before the stage has a scene
+  tool?: StageTool; // something the reader can do at this stage, such as write the letter
   scene?: Scene; // optional narrative layer; renders as a story when present
 }
 
