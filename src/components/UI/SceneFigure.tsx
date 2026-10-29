@@ -1,8 +1,8 @@
 import React from "react";
-import type { Scene } from "../../data/types";
+import type { Media } from "../../data/types";
 
 interface SceneFigureProps {
-  media?: Scene["media"];
+  media?: Media;
   label: string; // e.g. "Scene three", prefixed to the caption
   className?: string;
 }

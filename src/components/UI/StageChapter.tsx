@@ -79,7 +79,7 @@ const StageChapter: React.FC<StageChapterProps> = ({
           </p>
         </div>
         <SceneFigure
-          media={step.scene?.media}
+          media={step.scene?.media ?? step.media}
           label={`Scene ${inWords(number)}`}
           className="order-1 -mx-5 mt-6 sm:mx-0 lg:order-2 lg:mt-9"
         />

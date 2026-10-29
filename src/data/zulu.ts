@@ -26,6 +26,13 @@ export const zuluData: NationData = {
         "Incwadi iqukethe isicelo sokuba umndeni wakubo kwensizwa uyafisa ngosuku oluthile ukuza uzocela isihlobo esisha kulowomuzi wakubo kwentombi.",
         "Uma bevuma kubo kwentombi, kuba yilo usuku lolo lokuvakasha.",
       ],
+      // isiZulu caption to come from the cultural owner
+      media: {
+        kind: "illustration",
+        src: "/scenes/sending-the-letter.svg",
+        alt: "A messenger walks along the path from the groom's home to the bride's home, carrying a sealed letter.",
+        caption: { en: "The letter sets out for the bride's home." },
+      },
     },
     {
       id: "choosing_negotiators",
@@ -42,6 +49,13 @@ export const zuluData: NationData = {
         "Intokazi eyodwa noma ezimbili zikhethwa ukuze ziphethe izipho zikamakoti.",
         "Unobhala ubhala konke okwenzekayo kulosuku.",
       ],
+      // isiZulu caption to come from the cultural owner
+      media: {
+        kind: "illustration",
+        src: "/scenes/choosing-negotiators.svg",
+        alt: "Under a large tree, the groom's family sits in an arc and chooses the negotiators: two men, two young women and the scribe with a notebook.",
+        caption: { en: "The family chooses who will go." },
+      },
     },
     {
       id: "negotiations_day_umcelo",
@@ -150,6 +164,13 @@ export const zuluData: NationData = {
         "Kuyabuyelwa ekhaya lapho intombi ikhehlwa khona endlini ifakwe insoyi noma inkehli ekhanda.",
         "Umkhehlo wenziwa ngembuzi.",
       ],
+      // isiZulu caption to come from the cultural owner
+      media: {
+        kind: "illustration",
+        src: "/scenes/umembeso.svg",
+        alt: "The groom's mother, in a wide red hat, leads the groom and young men carrying a trunk, mats and a goat to the bride's home, where her family waits at the door.",
+        caption: { en: "The groom's mother leads the gifts to the bride's home." },
+      },
     },
     {
       id: "ukubonwa_kwezinkomo",
@@ -165,6 +186,13 @@ export const zuluData: NationData = {
         "Abakwamakoti babizwa bezobona izinkomo zamalobolo.",
         "Kukhishwa usuku lokuthi izinkomo zizohanjiswa nini kubo kamakoti.",
       ],
+      // isiZulu caption to come from the cultural owner
+      media: {
+        kind: "illustration",
+        src: "/scenes/ukubonwa-kwezinkomo.svg",
+        alt: "At the groom's home, the bride's family stands beside the cattle kraal looking at the Nguni cattle while a man of the groom's family shows them the herd.",
+        caption: { en: "The bride's family come to see the cattle." },
+      },
     },
     {
       id: "makoti_delivers_gift_umbondo",
@@ -179,6 +207,13 @@ export const zuluData: NationData = {
         "Umbondo uhanjiswa ebusuku, kuvame ukuhambisana nomshado.",
         "Umbondo uqukethe ukudla okuningi nezinto ezibalulekile.",
       ],
+      // isiZulu caption to come from the cultural owner
+      media: {
+        kind: "illustration",
+        src: "/scenes/umbondo.svg",
+        alt: "At night under a crescent moon, the bride and veiled young women walk in a line carrying pots and baskets of food on their heads to the groom's home, its doorway glowing.",
+        caption: { en: "Umbondo is carried to the groom's home by night." },
+      },
     },
     {
       id: "wedding_day_umabo_umshado",
@@ -205,6 +240,13 @@ export const zuluData: NationData = {
         "Uma sekubuyiwe esigcawini, umakoti uyaba (umabo), aphe izipho okuyizingubo, amacansi, amaphinifa, nayo yonke into enikazi abantu basemzini.",
         "Lokhu kwenzelwa esibayeni, bese emuva kwalokho umshado usuphelele, sekuyadliwa bayaphuza abaphuzayo kuze kuphele usuku.",
       ],
+      // isiZulu caption to come from the cultural owner
+      media: {
+        kind: "illustration",
+        src: "/scenes/umabo.svg",
+        alt: "On the wedding day the bride dances a high kick on the dance ground while people gather behind her and men of the amabutho stand on both sides with shields.",
+        caption: { en: "The bride dances on the wedding day." },
+      },
     },
   ],
 };
