@@ -17,6 +17,7 @@ export const zuluData: NationData = {
     {
       id: "sending_of_the_letter",
       title: "Sending of the Letter",
+      zuluTitle: "Incwadi Yokucela Usuku",
       summary:
         "The young man sends a letter from his home to the young woman's home. " +
         "In it, his family asks to come on a chosen day to ask for a new kinship.",
@@ -37,6 +38,7 @@ export const zuluData: NationData = {
     {
       id: "choosing_negotiators",
       title: "Choosing Negotiators (Uncles)",
+      zuluTitle: "Ukukhethwa Kwabakhongi",
       summary:
         "Before anyone travels, the family chooses the abakhongi who will go to " +
         "ask for a good kinship: the umkhongi omkhulu who leads, the umkhongi " +
@@ -60,7 +62,7 @@ export const zuluData: NationData = {
     {
       id: "negotiations_day_umcelo",
       title: "Negotiations Day",
-      zuluTitle: "Umcelo",
+      zuluTitle: "Usuku Lwamalobo (Umcelo)",
       description:
         "Ngosuku olubekiwe, abakhongi bayavuka ekuseni baya esangweni lakubo kwentombi, babize izithakazelo, bese beqala izinkulumo zokucela isihlobo.",
       details: [
@@ -77,7 +79,7 @@ export const zuluData: NationData = {
       scene: {
         narration:
           "At first light, the groom's chosen negotiators arrive at the gate of the " +
-          "bride's home. They do not simply knock — they announce themselves by calling " +
+          "bride's home. They do not simply knock. They announce themselves by calling " +
           "the family's praises, making clear they have come in peace, to ask for kinship. " +
           "It is common to be kept waiting at the gate for a long time; a child may be " +
           "sent to sit or lie before it, and the negotiators offer a small gift to open " +
@@ -130,12 +132,12 @@ export const zuluData: NationData = {
         ],
         media: {
           kind: "illustration",
-          src: "/scenes/umcelo-fire.svg",
-          alt: "The two families sit facing each other around a small fire, between two huts at dusk.",
+          src: "/scenes/umcelo.svg",
+          alt: "The two families sit facing each other at the bride's home, between two huts.",
           // isiZulu caption to come from the cultural owner; the old one
           // described the gate, not this scene
           caption: {
-            en: "The two families meet at the fire.",
+            en: "The two families meet at the bride's home.",
           },
         },
         variesNote:
@@ -218,11 +220,13 @@ export const zuluData: NationData = {
     {
       id: "wedding_day_umabo_umshado",
       title: "Wedding Day",
-      zuluTitle: "Umabo/Umshado",
+      zuluTitle: "Umshado",
       summary:
-        "A wedding day is set. The bride and her companions arrive in " +
-        "procession, and the customary ceremonies are held, with singing, " +
-        "dancing, and the bride's public consent to the marriage.",
+        "A wedding day is set and the bride's party arrives in procession. " +
+        "On the dance ground (isigcawu) the chief's policeman asks the bride whether she " +
+        "loves the groom. She answers by starting a song and dancing " +
+        "(ukusina), then gives the policeman a mat as a sign of her agreement. " +
+        "Later that same day she gives umabo, her gifts to the groom's family.",
       description:
         "Kukhishwa usuku lomshado, umakoti nozakwabo bahamba nomkhosi, kwenziwa imicimbi yesiko, kuhlanganisa ukucula, ukudansa, nokuvuma umthetho womshado.",
       details: [
