@@ -87,13 +87,17 @@ direction.
 
 ## How we work
 
-`main` stays deployable — it is what Vercel serves. All work happens on a branch
-and lands through a pull request.
+`main` stays deployable: it is what Vercel serves. `dev` is where work comes
+together first. Branch from `dev`, open your pull request against `dev`, and
+`dev` is merged into `main` when it is ready to go live.
 
 ```bash
+git switch dev
+git pull
 git switch -c feature/glossary-tooltips
 # ... work ...
 git push -u origin feature/glossary-tooltips
+# open the pull request with dev as the base branch
 ```
 
 Branch naming, following what is already in the history:
@@ -116,7 +120,7 @@ approval, which [CODEOWNERS](.github/CODEOWNERS) requests automatically.
 The architecture has one central idea: **UI components are nation-agnostic; the
 culture lives in data.** Keep it that way.
 
-- **No nation-specific components.** There is no `components/zulu/StepCard.tsx`
+- **No nation-specific components.** There is no `components/zulu/StageChapter.tsx`
   and there should never be. Components receive `NationData`, `Step`, `Scene` and
   `Theme` and render whatever they are given, so adding Xhosa later is a data
   file, not a component fork.

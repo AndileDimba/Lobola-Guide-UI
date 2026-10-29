@@ -4,28 +4,44 @@ export const zuluData: NationData = {
   id: "zulu",
   nationName: "Zulu (AmaZulu)",
   theme: {
-    primary: "bg-white",
-    headerBg: "bg-white",
-    accent: "text-yellow-600",
-    border: "border-yellow-600",
-    ring: "ring-yellow-100",
-    button: "bg-yellow-600 hover:bg-yellow-700 text-white",
-    iconColor: "#ca8a04", // Gold
+    primary: "bg-clay",
+    headerBg: "bg-paper",
+    accent: "text-clay",
+    border: "border-clay",
+    ring: "ring-clay/20",
+    button: "bg-clay hover:bg-clay-dark text-paper",
+    iconColor: "#A2431F", // Clay
+    beads: ["#231A14", "#B3341F", "#FBF6EC", "#2A5C8F"],
   },
   steps: [
     {
       id: "sending_of_the_letter",
       title: "Sending of the Letter",
+      summary:
+        "The young man sends a letter from his home to the young woman's home. " +
+        "In it, his family asks to come on a chosen day to ask for a new kinship.",
       description:
         "Insizwa ithumela incwadi esuka kubo kwayo ihambise kubo kwentombi, leyoncwadi iqukethe isicelo sokuba umndeni wakubo kwensizwa uyafisa ukuza uzocela isihlobo esisha.",
       details: [
         "Incwadi iqukethe isicelo sokuba umndeni wakubo kwensizwa uyafisa ngosuku oluthile ukuza uzocela isihlobo esisha kulowomuzi wakubo kwentombi.",
         "Uma bevuma kubo kwentombi, kuba yilo usuku lolo lokuvakasha.",
       ],
+      // isiZulu caption to come from the cultural owner
+      media: {
+        kind: "illustration",
+        src: "/scenes/sending-the-letter.svg",
+        alt: "A messenger walks along the path from the groom's home to the bride's home, carrying a sealed letter.",
+        caption: { en: "The letter sets out for the bride's home." },
+      },
     },
     {
       id: "choosing_negotiators",
       title: "Choosing Negotiators (Uncles)",
+      summary:
+        "Before anyone travels, the family chooses the abakhongi who will go to " +
+        "ask for a good kinship: the umkhongi omkhulu who leads, the umkhongi " +
+        "omncane who accompanies him, one or two young women, and the unobhala " +
+        "who records the day.",
       description:
         "Ngaphambi kokuthi kuhanjiwe, kukhethwa abakhongi abazoya ukuyocela isihlobo esihle, kuhlanganisa umkhongi omkhulu, umkhongi omncane (omphelezeli), intokazi eyodwa noma ezimbili, kanye nonobhala.",
       details: [
@@ -33,10 +49,17 @@ export const zuluData: NationData = {
         "Intokazi eyodwa noma ezimbili zikhethwa ukuze ziphethe izipho zikamakoti.",
         "Unobhala ubhala konke okwenzekayo kulosuku.",
       ],
+      // isiZulu caption to come from the cultural owner
+      media: {
+        kind: "illustration",
+        src: "/scenes/choosing-negotiators.svg",
+        alt: "Under a large tree, the groom's family sits in an arc and chooses the negotiators: two men, two young women and the scribe with a notebook.",
+        caption: { en: "The family chooses who will go." },
+      },
     },
     {
       id: "negotiations_day_umcelo",
-      title: "Negotiations Day (Umcelo)",
+      title: "Negotiations Day",
       zuluTitle: "Umcelo",
       description:
         "Ngosuku olubekiwe, abakhongi bayavuka ekuseni baya esangweni lakubo kwentombi, babize izithakazelo, bese beqala izinkulumo zokucela isihlobo.",
@@ -107,11 +130,12 @@ export const zuluData: NationData = {
         ],
         media: {
           kind: "illustration",
-          src: "", // reserved — a scene of the abakhongi at the gate at dawn
-          alt: "The groom's negotiators standing at the gate of the bride's home at first light.",
+          src: "/scenes/umcelo-fire.svg",
+          alt: "The two families sit facing each other around a small fire, between two huts at dusk.",
+          // isiZulu caption to come from the cultural owner; the old one
+          // described the gate, not this scene
           caption: {
-            en: "The negotiators announce themselves at the gate.",
-            zu: "Abakhongi bazazisa esangweni.",
+            en: "The two families meet at the fire.",
           },
         },
         variesNote:
@@ -121,7 +145,12 @@ export const zuluData: NationData = {
     },
     {
       id: "gifting_of_bride_family_umembeso",
-      title: "Gifting of Bride Family (Umembeso)",
+      title: "Gifting of Bride Family",
+      zuluTitle: "Umembeso",
+      summary:
+        "What follows is ushukela, which some places call izikhwehlela. Some " +
+        "families combine it with umembeso, or with the izibizo, the gifts the " +
+        "bride's family has asked for.",
       description:
         "Okulandelayo kube ngoshukela (ezinye izindawo zibiza ngezikhwehlela), abanye bakuhlanganisa nomembeso noma ngezibizo.",
       details: [
@@ -135,31 +164,65 @@ export const zuluData: NationData = {
         "Kuyabuyelwa ekhaya lapho intombi ikhehlwa khona endlini ifakwe insoyi noma inkehli ekhanda.",
         "Umkhehlo wenziwa ngembuzi.",
       ],
+      // isiZulu caption to come from the cultural owner
+      media: {
+        kind: "illustration",
+        src: "/scenes/umembeso.svg",
+        alt: "The groom's mother, in a wide red hat, leads the groom and young men carrying a trunk, mats and a goat to the bride's home, where her family waits at the door.",
+        caption: { en: "The groom's mother leads the gifts to the bride's home." },
+      },
     },
     {
       id: "ukubonwa_kwezinkomo",
-      title:
-        "Ukubonwa Kwezinkomo (Bride Family Going to See Cows at Groom's Home)",
+      title: "Bride Family Going to See Cows at Groom's Home",
+      zuluTitle: "Ukubonwa Kwezinkomo",
+      summary:
+        "After this ceremony, the bride's family choose whether to begin with " +
+        "the cattle or with the izibizo, and the families agree on the ilobolo " +
+        "cattle, their number, and the days they will be delivered.",
       description:
         "Emuva kwalomcimbi, abakwamakoti bafuna ukuqala ngezinkomo noma ngezibizo, kuvunyelwane ngezinkomo zamalobolo, amanani, nezinsuku zokuhanjiswa.",
       details: [
         "Abakwamakoti babizwa bezobona izinkomo zamalobolo.",
         "Kukhishwa usuku lokuthi izinkomo zizohanjiswa nini kubo kamakoti.",
       ],
+      // isiZulu caption to come from the cultural owner
+      media: {
+        kind: "illustration",
+        src: "/scenes/ukubonwa-kwezinkomo.svg",
+        alt: "At the groom's home, the bride's family stands beside the cattle kraal looking at the Nguni cattle while a man of the groom's family shows them the herd.",
+        caption: { en: "The bride's family come to see the cattle." },
+      },
     },
     {
       id: "makoti_delivers_gift_umbondo",
-      title: "Makoti Delivers Gift (Umbondo)",
+      title: "Makoti Delivers Gift",
+      zuluTitle: "Umbondo",
+      summary:
+        "Once the cattle have been delivered, the bride goes with veiled young " +
+        "women to take umbondo, also called ingqibamasondo, to the groom's home.",
       description:
         "Ngemva kokuhanjiswa kwezinkomo, umakoti uhamba nezintombi ezimbozile ukuhambisa umbondo noma ingqibamasondo kubo kamkhwenyana.",
       details: [
         "Umbondo uhanjiswa ebusuku, kuvame ukuhambisana nomshado.",
         "Umbondo uqukethe ukudla okuningi nezinto ezibalulekile.",
       ],
+      // isiZulu caption to come from the cultural owner
+      media: {
+        kind: "illustration",
+        src: "/scenes/umbondo.svg",
+        alt: "At night under a crescent moon, the bride and veiled young women walk in a line carrying pots and baskets of food on their heads to the groom's home, its doorway glowing.",
+        caption: { en: "Umbondo is carried to the groom's home by night." },
+      },
     },
     {
       id: "wedding_day_umabo_umshado",
-      title: "Wedding Day (Umabo/Umshado)",
+      title: "Wedding Day",
+      zuluTitle: "Umabo/Umshado",
+      summary:
+        "A wedding day is set. The bride and her companions arrive in " +
+        "procession, and the customary ceremonies are held, with singing, " +
+        "dancing, and the bride's public consent to the marriage.",
       description:
         "Kukhishwa usuku lomshado, umakoti nozakwabo bahamba nomkhosi, kwenziwa imicimbi yesiko, kuhlanganisa ukucula, ukudansa, nokuvuma umthetho womshado.",
       details: [
@@ -177,6 +240,13 @@ export const zuluData: NationData = {
         "Uma sekubuyiwe esigcawini, umakoti uyaba (umabo), aphe izipho okuyizingubo, amacansi, amaphinifa, nayo yonke into enikazi abantu basemzini.",
         "Lokhu kwenzelwa esibayeni, bese emuva kwalokho umshado usuphelele, sekuyadliwa bayaphuza abaphuzayo kuze kuphele usuku.",
       ],
+      // isiZulu caption to come from the cultural owner
+      media: {
+        kind: "illustration",
+        src: "/scenes/umabo.svg",
+        alt: "On the wedding day the bride dances a high kick on the dance ground while people gather behind her and men of the amabutho stand on both sides with shields.",
+        caption: { en: "The bride dances on the wedding day." },
+      },
     },
   ],
 };

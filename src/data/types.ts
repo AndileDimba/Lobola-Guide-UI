@@ -6,6 +6,9 @@ export interface Theme {
   ring: string;
   button: string;
   iconColor: string;
+  // Raw hex for the beadwork band, ground colour first, then the bead colours
+  // repeated along it. Hex rather than classes because they feed SVG fills.
+  beads?: string[];
 }
 
 /**
@@ -34,6 +37,13 @@ export interface Role {
   gloss: string;
 }
 
+export interface Media {
+  kind: "image" | "illustration" | "video";
+  src?: string; // empty for now — slot reserved
+  alt: string;
+  caption?: Bilingual;
+}
+
 /**
  * The optional "scene" layer that turns a stage from a checklist into a story.
  * When present, the guide renders the narrative; when absent, it falls back to
@@ -44,12 +54,7 @@ export interface Scene {
   voice?: Phrase; // the isiZulu voice of this moment, shown in full + gloss
   roles?: Role[]; // who is present
   beats?: Bilingual[]; // the sequence of what unfolds
-  media?: {
-    kind: "image" | "illustration" | "video";
-    src?: string; // empty for now — slot reserved
-    alt: string;
-    caption?: Bilingual;
-  };
+  media?: Media;
   variesNote?: string; // the humble "commonly… families and regions differ" line
 }
 
@@ -57,8 +62,10 @@ export interface Step {
   id: string;
   title: string;
   zuluTitle?: string; // optional isiZulu name of the stage
+  summary?: string; // English summary, shown before the isiZulu description
   description: string;
   details: string[];
+  media?: Media; // a picture for the scene slot before the stage has a scene
   scene?: Scene; // optional narrative layer; renders as a story when present
 }
 
@@ -67,14 +74,4 @@ export interface NationData {
   nationName: string;
   theme: Theme;
   steps: Step[];
-}
-
-export interface StepCardProps {
-  step: Step;
-  isActive: boolean;
-  isCompleted?: boolean;
-  theme: Theme;
-  onComplete: () => void;
-  onActivate?: () => void;
-  index?: number;
 }

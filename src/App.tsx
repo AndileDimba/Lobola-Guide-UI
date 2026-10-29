@@ -5,16 +5,16 @@ import FAQPage from './pages/FAQPage';
 import NotFoundPage from './pages/NotFoundPage';
 import Navigation from './components/Layout/Navigation';
 import Footer from './components/Layout/Footer';
-import './App.css';
 
 function App() {
   return (
     <div className="min-h-screen bg-stone-50 font-sans flex flex-col">
       <Navigation />
-      <main className="flex-1">
+      <main className="flex flex-1 flex-col">
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/guide/zulu" element={<ZuluGuidePage />} />
+          <Route path="/guide/zulu/:stageId" element={<ZuluGuidePage />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
