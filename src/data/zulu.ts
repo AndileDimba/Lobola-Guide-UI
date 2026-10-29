@@ -34,6 +34,12 @@ export const zuluData: NationData = {
         alt: "A messenger walks along the path from the groom's home to the bride's home, carrying a sealed letter.",
         caption: { en: "The letter sets out for the bride's home." },
       },
+      tool: {
+        to: "/letter",
+        label: "Write the letter",
+        description:
+          "Answer a few questions and we will word the letter for you, in English or isiZulu.",
+      },
     },
     {
       id: "choosing_negotiators",
