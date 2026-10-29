@@ -108,6 +108,19 @@ const StageChapter: React.FC<StageChapterProps> = ({
         )}
       </div>
 
+      {step.tool && (
+        <aside className="mt-9 border-t border-rule pt-6 lg:mt-11 lg:pt-7">
+          <p>{step.tool.description}</p>
+          <Link
+            to={step.tool.to}
+            className={`mt-4 inline-flex min-h-[52px] items-center justify-center gap-2.5 px-7 text-lg font-medium transition-colors ${theme.button}`}
+          >
+            {step.tool.label}
+            <Arrow direction="next" />
+          </Link>
+        </aside>
+      )}
+
       <nav
         aria-label="Stage navigation"
         className="mt-11 flex flex-wrap gap-x-10 lg:mt-16"

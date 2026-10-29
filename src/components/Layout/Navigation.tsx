@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 const links = [
   { to: '/', label: 'Home' },
   { to: '/guide/zulu', label: 'Zulu Guide' },
+  { to: '/letter', label: 'Letter builder' },
   { to: '/faq', label: 'FAQ' },
 ];
 
@@ -24,7 +25,7 @@ const Navigation = () => {
     }`;
 
   return (
-    <nav aria-label="Main" className="bg-paper border-b border-rule sticky top-0 z-50">
+    <nav aria-label="Main" className="bg-paper border-b border-rule sticky top-0 z-50 print:hidden">
       <div className="max-w-[1120px] mx-auto px-5 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link
