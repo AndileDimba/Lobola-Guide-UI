@@ -4,7 +4,7 @@
  * is offered.
  */
 export const SUGGESTION_FORM_URL = "";
-export const SUGGESTION_EMAIL = "mlamulia75@gmail.com";
+export const SUGGESTION_EMAIL = "hello@dimba.co.za";
 
 /**
  * A mailto link whose message starts with the page it was sent from. Build it
