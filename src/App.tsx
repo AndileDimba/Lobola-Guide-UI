@@ -6,6 +6,7 @@ import LetterPage from './pages/LetterPage';
 import NotFoundPage from './pages/NotFoundPage';
 import Navigation from './components/Layout/Navigation';
 import Footer from './components/Layout/Footer';
+import UpdatePrompt from './components/Layout/UpdatePrompt';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      <UpdatePrompt />
     </div>
   );
 }
