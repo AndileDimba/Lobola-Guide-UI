@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import type { Step, Theme } from "../../data/types";
 import SceneFigure from "./SceneFigure";
 import SceneView from "./SceneView";
+import SuggestCorrection from "./SuggestCorrection";
 
 interface StageChapterProps {
   step: Step;
@@ -152,6 +153,8 @@ const StageChapter: React.FC<StageChapterProps> = ({
           />
         )}
       </nav>
+
+      <SuggestCorrection subject={step.title} />
     </article>
   );
 };
