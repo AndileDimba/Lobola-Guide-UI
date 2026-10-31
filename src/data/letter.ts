@@ -87,9 +87,9 @@ export const buildLetter = (f: LetterFields, lang: LetterLanguage): Letter => {
       ? `${ZU_PEOPLE[count - 1].replace(/ /g, NB_SPACE)}${NB_SPACE}(${count})`
       : "[inani]";
     return {
-      greeting: `Sanibonani bakwa${bs},`,
+      greeting: `Sanibonani Mndeni wakwa${bs},`,
       body: [
-        `Thina bakwa${gs}${clan ? ` (${clan})` : ""} sibhala le ncwadi ukuze sazise umndeni wakwa${bs} ukuthi indodana yethu, u${NB_HYPHEN}${g}, ifisa ukushada nendodakazi yenu, u${NB_HYPHEN}${b}.`,
+        `Thina Mndeni wakwa${gs}${clan ? ` (${clan})` : ""} sibhala le ncwadi ukuze sazise umndeni wakwa${bs} ukuthi indodana yethu, u${NB_HYPHEN}${g}, ifisa ukushada nendodakazi yenu, u${NB_HYPHEN}${b}.`,
         "Uma nivuma, sicela ukuza ekhaya lenu ukuzocela isandla sakhe nokuqala izingxoxo zamalobolo.",
         `Sizoba ngabantu ${people}. Sicela nisazise ukuthi yiluphi usuku olunilungele ukuthi size.`,
         `Ningaxhumana no${NB_HYPHEN}${c} kule nombolo: ${ph}.`,

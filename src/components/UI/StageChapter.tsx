@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import type { Step, Theme } from "../../data/types";
 import SceneFigure from "./SceneFigure";
 import SceneView from "./SceneView";
+import Suggestions from "./Suggestions";
 
 interface StageChapterProps {
   step: Step;
@@ -152,6 +153,8 @@ const StageChapter: React.FC<StageChapterProps> = ({
           />
         )}
       </nav>
+
+      <Suggestions subject={step.title} />
     </article>
   );
 };

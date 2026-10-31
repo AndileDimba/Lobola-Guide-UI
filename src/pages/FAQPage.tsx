@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { ReactNode } from 'react';
+import { suggestionEmailHref } from '../data/feedback';
 
 interface FAQ {
   id: string;
@@ -264,13 +265,12 @@ const FAQPage = () => {
               <p className="mt-2.5 lg:mt-3">
                 We're building this resource with community input. Your question could help others.
               </p>
-              <button
-                type="button"
+              <a
+                href={suggestionEmailHref('Question for the FAQ', 'My question:')}
                 className="mt-6 inline-flex min-h-[52px] items-center justify-center border-2 border-ink-deep px-7 text-lg font-medium transition-colors hover:bg-ink-deep hover:text-paper"
-                onClick={() => alert('Suggestion feature coming soon!')}
               >
                 Suggest a question
-              </button>
+              </a>
             </section>
           </main>
         </div>
