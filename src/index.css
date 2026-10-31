@@ -11,13 +11,10 @@
 }
 
 @layer base {
-  h1, h2, h3 {
-    font-family: 'Playfair Display', serif;
-  }
-
+  /* Headings take their face from their own classes (font-display) or, for
+     the small uppercase labels, from the reading font around them */
   body {
-    font-family: 'Inter', sans-serif;
-    @apply bg-stone-100 text-zinc-900;
+    @apply bg-paper font-reading text-ink;
   }
 }
 
