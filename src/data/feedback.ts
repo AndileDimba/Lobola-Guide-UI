@@ -1,9 +1,8 @@
 /**
  * Where suggestions go: corrections, ideas for the site, questions for the
- * FAQ. The Google Form is empty until it exists; while it is, only email
- * is offered.
+ * FAQ. Leaving the form address empty hides the form and offers only email.
  */
-export const SUGGESTION_FORM_URL = "";
+export const SUGGESTION_FORM_URL = "https://forms.gle/FNEuQz8r71EXc4SQ9";
 export const SUGGESTION_EMAIL = "mlamulia75@gmail.com";
 
 /**
