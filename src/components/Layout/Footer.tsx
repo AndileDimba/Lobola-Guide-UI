@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import SuggestCorrection from '../UI/SuggestCorrection';
+import Suggestions from '../UI/Suggestions';
 
 const Footer = () => {
   return (
@@ -50,7 +50,7 @@ const Footer = () => {
             <p className="text-base leading-relaxed">
               This app provides general information and does not replace guidance from elders or family. Practices vary between families and regions.
             </p>
-            <SuggestCorrection compact />
+            <Suggestions compact />
           </div>
         </div>
 
