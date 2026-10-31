@@ -123,6 +123,12 @@ There is no state library and none is needed yet.
   Nothing typed into it is sent anywhere. Its wording lives in
   `src/data/letter.ts`; the page prints only the letter.
 - No backend and no API. Everything ships as static assets.
+- The site is a PWA. `vite-plugin-pwa` builds a service worker that saves
+  every page, picture and icon on the first visit, so the site and the
+  letter builder work offline, and an installed copy opens like an app (the
+  manifest is `public/site.webmanifest`). A new deploy does not take over by
+  itself: `UpdatePrompt` offers "A new version of Lobola Hub is ready" and
+  reloads when the reader taps Refresh.
 - Vercel Web Analytics counts page views (no cookies). The letter builder also
   sends a `Letter shared` event with only the method (`whatsapp`, `print`,
   `copy`) and the language; custom events are counted on Vercel Pro only.
