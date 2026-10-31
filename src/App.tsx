@@ -10,7 +10,7 @@ import UpdatePrompt from './components/Layout/UpdatePrompt';
 
 function App() {
   return (
-    <div className="min-h-screen bg-stone-50 font-sans flex flex-col">
+    <div className="min-h-screen bg-paper flex flex-col">
       <Navigation />
       <main className="flex flex-1 flex-col">
         <Routes>
