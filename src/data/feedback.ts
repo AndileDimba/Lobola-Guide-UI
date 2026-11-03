@@ -6,10 +6,10 @@ export const SUGGESTION_FORM_URL = "https://forms.gle/FNEuQz8r71EXc4SQ9";
 export const SUGGESTION_EMAIL = "hello@dimba.co.za";
 
 /**
- * A mailto link whose message starts with the page it was sent from. Build it
- * when the link is clicked, so it names the page the reader is on.
+ * A mailto link whose message starts with the page it was sent from. Pass the
+ * page when the link is clicked, so it names the page the reader is on.
  */
-export const suggestionEmailHref = (subject: string, prompt: string) => {
-  const body = `Page: ${window.location.href}\n\n${prompt}\n`;
+export const suggestionEmailHref = (subject: string, prompt: string, page?: string) => {
+  const body = `${page ? `Page: ${page}\n\n` : ""}${prompt}\n`;
   return `mailto:${SUGGESTION_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 };

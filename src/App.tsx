@@ -7,10 +7,12 @@ import NotFoundPage from './pages/NotFoundPage';
 import Navigation from './components/Layout/Navigation';
 import Footer from './components/Layout/Footer';
 import UpdatePrompt from './components/Layout/UpdatePrompt';
+import PageHead from './components/Layout/PageHead';
 
 function App() {
   return (
     <div className="min-h-screen bg-paper flex flex-col">
+      <PageHead />
       <Navigation />
       <main className="flex flex-1 flex-col">
         <Routes>

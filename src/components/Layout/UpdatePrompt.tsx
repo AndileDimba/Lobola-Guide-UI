@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useSyncExternalStore } from 'react';
 import { useRegisterSW } from 'virtual:pwa-register/react';
 
 // While the site is open, look for a new version this often
@@ -9,7 +9,7 @@ const CHECK_EVERY_MS = 60 * 60 * 1000;
  * says so. This bar offers it, and says once when the site first works
  * offline.
  */
-const UpdatePrompt = () => {
+const UpdateBar = () => {
   const {
     needRefresh: [needRefresh, setNeedRefresh],
     offlineReady: [offlineReady, setOfflineReady],
@@ -69,6 +69,15 @@ const UpdatePrompt = () => {
       </div>
     </div>
   );
+};
+
+const noSubscribe = () => () => {};
+
+// The service worker exists only in the browser, so the bar is left out when
+// pages are drawn at build time and added once the page is in the browser
+const UpdatePrompt = () => {
+  const inBrowser = useSyncExternalStore(noSubscribe, () => true, () => false);
+  return inBrowser ? <UpdateBar /> : null;
 };
 
 export default UpdatePrompt;
