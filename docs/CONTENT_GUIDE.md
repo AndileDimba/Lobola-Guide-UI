@@ -84,6 +84,7 @@ note where a stage varies a lot.
 | --- | --- |
 | Zulu stages, scenes, phrases, roles | [`src/data/zulu.ts`](../src/data/zulu.ts) |
 | The shape all content must fit | [`src/data/types.ts`](../src/data/types.ts) |
+| The eleven cattle: names, meanings, notes and the quiz | [`src/data/cattle.ts`](../src/data/cattle.ts) |
 | FAQ questions and answers | [`src/data/faq.ts`](../src/data/faq.ts) |
 | How a stage shows in search results (its `seo` title and description) | [`src/data/zulu.ts`](../src/data/zulu.ts) |
 | How a scene is rendered | [`src/components/UI/SceneView.tsx`](../src/components/UI/SceneView.tsx) |

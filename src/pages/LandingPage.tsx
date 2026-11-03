@@ -44,7 +44,8 @@ const quickFacts = [
   },
   {
     title: "Cows or cash",
-    description: "Traditionally paid in cattle, today many families accept the cash equivalent. The choice depends on the families involved."
+    description: "Traditionally paid in cattle, today many families accept the cash equivalent. The choice depends on the families involved.",
+    link: { to: "/guide/zulu/cattle", label: "The eleven cattle, and what each means" }
   },
   {
     title: "Family-led process",
@@ -174,6 +175,14 @@ const LandingPage = () => {
                   {fact.title}
                 </h3>
                 <p className="text-[17px] leading-relaxed lg:text-lg">{fact.description}</p>
+                {fact.link && (
+                  <Link
+                    to={fact.link.to}
+                    className="mt-2 inline-block text-[17px] underline decoration-1 underline-offset-4 hover:decoration-2 lg:text-lg"
+                  >
+                    {fact.link.label}
+                  </Link>
+                )}
               </div>
             ))}
           </div>

@@ -71,6 +71,12 @@ export interface PageSeo {
   description: string;
 }
 
+/** A short titled passage on a stage page, such as "The six cows at the gate" */
+export interface Passage {
+  title: string;
+  paragraphs: Bilingual[]; // English first, the isiZulu beneath
+}
+
 export interface Step {
   id: string;
   title: string;
@@ -80,7 +86,8 @@ export interface Step {
   description: string;
   details: Bilingual[]; // what happens, English first with the isiZulu beneath
   media?: Media; // a picture for the scene slot before the stage has a scene
-  tool?: StageTool; // something the reader can do at this stage, such as write the letter
+  tool?: StageTool; // something the reader can do or read at this stage, such as write the letter
+  passages?: Passage[]; // shown after what happens
   scene?: Scene; // optional narrative layer; renders as a story when present
 }
 
