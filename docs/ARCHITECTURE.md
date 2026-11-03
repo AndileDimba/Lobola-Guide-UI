@@ -43,6 +43,7 @@ src/
 ├── pages/
 │   ├── LandingPage.tsx         The hub: what lobola is / is not, nation grid, FAQ teaser
 │   ├── ZuluGuidePage.tsx       The Zulu journey: picks the stage from the URL
+│   ├── CattlePage.tsx          The eleven cattle: cards that turn, filter, quiz
 │   ├── FAQPage.tsx             FAQ content + category filtering
 │   └── NotFoundPage.tsx
 ├── components/
@@ -58,12 +59,14 @@ src/
 └── data/
     ├── types.ts                The content contract — read this first
     ├── zulu.ts                 All Zulu content (theme + stages + scenes)
+    ├── cattle.ts               The eleven named cattle and the quiz on their page
     └── faq.ts                  FAQ questions and answers
 scripts/
 └── prerender.ts                Vite plugin: writes every page, 404.html and sitemap.xml
 ```
 
 Routes (in `App.tsx`): `/` landing, `/guide/zulu` the guide (first stage),
+`/guide/zulu/cattle` the eleven cattle,
 `/guide/zulu/:stageId` one stage by its `id`, `/letter` the letter builder,
 `/faq`, `*` not found.
 
@@ -81,6 +84,7 @@ NationData
      ├── details: Bilingual[]  What happens: en, with the isiZulu beneath
      ├── media?             A picture for the scene slot before the stage has a scene
      ├── tool?              A link to a page that helps do this stage (to, label, description)
+     ├── passages?          Short titled passages after what happens (title, Bilingual paragraphs)
      └── scene?             The optional story layer
           ├── narration     English narration (required within a scene)
           ├── voice?        Phrase: isiZulu spoken line + English gloss + note

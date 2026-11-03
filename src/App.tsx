@@ -3,6 +3,7 @@ import LandingPage from './pages/LandingPage';
 import ZuluGuidePage from './pages/ZuluGuidePage';
 import FAQPage from './pages/FAQPage';
 import LetterPage from './pages/LetterPage';
+import CattlePage from './pages/CattlePage';
 import NotFoundPage from './pages/NotFoundPage';
 import Navigation from './components/Layout/Navigation';
 import Footer from './components/Layout/Footer';
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/guide/zulu" element={<ZuluGuidePage />} />
+          <Route path="/guide/zulu/cattle" element={<CattlePage />} />
           <Route path="/guide/zulu/:stageId" element={<ZuluGuidePage />} />
           <Route path="/letter" element={<LetterPage />} />
           <Route path="/faq" element={<FAQPage />} />
