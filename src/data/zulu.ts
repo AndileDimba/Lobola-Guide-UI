@@ -18,6 +18,11 @@ export const zuluData: NationData = {
       id: "sending_of_the_letter",
       title: "Sending of the Letter",
       zuluTitle: "Incwadi Yokucela Usuku",
+      seo: {
+        title: "Incwadi Yokucela Usuku: Sending the Lobola Letter",
+        description:
+          "How Zulu lobola begins: the groom's family sends a letter asking to visit the bride's home on a chosen day. Write your own letter in English or isiZulu.",
+      },
       summary:
         "The young man sends a letter from his home to the young woman's home. " +
         "In it, his family asks to come on a chosen day to ask for a new kinship.",
@@ -51,6 +56,11 @@ export const zuluData: NationData = {
       id: "choosing_negotiators",
       title: "Choosing Negotiators (Uncles)",
       zuluTitle: "Ukukhethwa Kwabakhongi",
+      seo: {
+        title: "Ukukhethwa Kwabakhongi: Choosing the Lobola Negotiators",
+        description:
+          "Who the groom's family sends to ask for a new kinship: the umkhongi omkhulu who leads, the umkhongi omncane, one or two young women and the unobhala.",
+      },
       summary:
         "Before anyone travels, the family chooses the abakhongi who will go to " +
         "ask for a good kinship: the umkhongi omkhulu who leads, the umkhongi " +
@@ -84,6 +94,11 @@ export const zuluData: NationData = {
       id: "negotiations_day_umcelo",
       title: "Negotiations Day",
       zuluTitle: "Usuku Lwamalobo (Umcelo)",
+      seo: {
+        title: "Umcelo: What Happens on Lobola Negotiations Day",
+        description:
+          "The abakhongi reach the bride's gate, call their izithakazelo and ask for a good kinship. How the day commonly unfolds, from the gate to the talk of cattle.",
+      },
       description:
         "Ngosuku olubekiwe, abakhongi bayavuka ekuseni baya esangweni lakubo kwentombi, babize izithakazelo, bese beqala izinkulumo zokucela isihlobo.",
       details: [
@@ -197,6 +212,11 @@ export const zuluData: NationData = {
       id: "gifting_of_bride_family_umembeso",
       title: "Gifting of Bride Family",
       zuluTitle: "Umembeso",
+      seo: {
+        title: "Umembeso: What Happens and What to Bring",
+        description:
+          "The groom's mother brings the gifts listed in the letter of izibizo, with a goat called ubikibiki. How ushukela, umembeso and the izibizo fit together.",
+      },
       summary:
         "What follows is ushukela, which some places call izikhwehlela. Some " +
         "families combine it with umembeso, or with the izibizo, the gifts the " +
@@ -253,6 +273,11 @@ export const zuluData: NationData = {
       id: "ukubonwa_kwezinkomo",
       title: "Bride Family Going to See Cows at Groom's Home",
       zuluTitle: "Ukubonwa Kwezinkomo",
+      seo: {
+        title: "Ukubonwa Kwezinkomo: Seeing the Lobola Cattle",
+        description:
+          "The bride's family visit the groom's home to see the ilobolo cattle, and the families agree on their number and the day they will be delivered.",
+      },
       summary:
         "After this ceremony, the bride's family choose whether to begin with " +
         "the cattle or with the izibizo, and the families agree on the ilobolo " +
@@ -281,6 +306,11 @@ export const zuluData: NationData = {
       id: "makoti_delivers_gift_umbondo",
       title: "Makoti Delivers Gift",
       zuluTitle: "Umbondo",
+      seo: {
+        title: "Umbondo: The Bride's Gifts to the Groom's Home",
+        description:
+          "Once the cattle are delivered, the bride and veiled young women carry umbondo, food and other important things, to the groom's home by night.",
+      },
       summary:
         "Once the cattle have been delivered, the bride goes with veiled young " +
         "women to take umbondo, also called ingqibamasondo, to the groom's home.",
@@ -308,6 +338,11 @@ export const zuluData: NationData = {
       id: "wedding_day_umabo_umshado",
       title: "Wedding Day",
       zuluTitle: "Umshado",
+      seo: {
+        title: "Umshado: The Zulu Traditional Wedding Day",
+        description:
+          "The bride's party arrives in procession, she dances on the isigcawu and gives a mat as her answer, and later that day she gives umabo to the groom's family.",
+      },
       summary:
         "A wedding day is set and the bride's party arrives in procession. " +
         "On the dance ground (isigcawu) the chief's policeman asks the bride whether she " +

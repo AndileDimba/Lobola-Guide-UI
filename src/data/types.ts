@@ -65,10 +65,17 @@ export interface StageTool {
   description: string;
 }
 
+/** How a page shows in search results and link previews */
+export interface PageSeo {
+  title: string; // without the site name, which is added after it
+  description: string;
+}
+
 export interface Step {
   id: string;
   title: string;
   zuluTitle?: string; // optional isiZulu name of the stage
+  seo?: PageSeo;
   summary?: string; // English summary, shown before the isiZulu description
   description: string;
   details: Bilingual[]; // what happens, English first with the isiZulu beneath

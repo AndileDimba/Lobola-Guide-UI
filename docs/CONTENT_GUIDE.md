@@ -84,7 +84,8 @@ note where a stage varies a lot.
 | --- | --- |
 | Zulu stages, scenes, phrases, roles | [`src/data/zulu.ts`](../src/data/zulu.ts) |
 | The shape all content must fit | [`src/data/types.ts`](../src/data/types.ts) |
-| FAQ questions and answers | [`src/pages/FAQPage.tsx`](../src/pages/FAQPage.tsx) |
+| FAQ questions and answers | [`src/data/faq.ts`](../src/data/faq.ts) |
+| How a stage shows in search results (its `seo` title and description) | [`src/data/zulu.ts`](../src/data/zulu.ts) |
 | How a scene is rendered | [`src/components/UI/SceneView.tsx`](../src/components/UI/SceneView.tsx) |
 
 ## 5. Worked example: upgrading a stage into a scene
@@ -196,6 +197,8 @@ fallback and they still carry the isiZulu summary.
 - [ ] isiZulu is written by someone who speaks it, not machine-translated
 - [ ] Framed as *commonly / often*, never as a rule
 - [ ] No named family, community or village; no published going rate
+- [ ] A new stage has an `seo` title and description, in plain English that
+      matches what the stage says
 - [ ] Written in your own words, from knowledge you actually hold
 - [ ] The PR description says where the knowledge comes from, and flags anything
       you are unsure of

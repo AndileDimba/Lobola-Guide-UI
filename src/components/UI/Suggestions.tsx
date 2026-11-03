@@ -16,10 +16,11 @@ const link =
  * the form, or an email.
  */
 const Suggestions: React.FC<SuggestionsProps> = ({ subject, compact }) => {
-  const emailHref = () =>
+  const emailHref = (page?: string) =>
     suggestionEmailHref(
       subject ? `Suggestion: ${subject}` : "Suggestion for Lobola Hub",
-      "What is wrong, or what would you like to see?"
+      "What is wrong, or what would you like to see?",
+      page
     );
 
   const options = (
@@ -34,10 +35,11 @@ const Suggestions: React.FC<SuggestionsProps> = ({ subject, compact }) => {
       <li>
         <a
           href={emailHref()}
-          // The footer does not redraw when the page changes, so the email
-          // names the page as it is when the link is clicked
+          // The page is named when the link is clicked: the footer does not
+          // redraw when the page changes, and pages are first drawn at build
+          // time, where there is no address
           onClick={(e) => {
-            e.currentTarget.href = emailHref();
+            e.currentTarget.href = emailHref(window.location.href);
           }}
           className={`text-ink ${link}`}
         >
