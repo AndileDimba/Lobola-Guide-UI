@@ -21,7 +21,7 @@ const NEXT_STAGE_ID = 'ukubonwa_kwezinkomo';
 
 /** A Nguni cow in the cattle's own coat colours */
 const Cow = ({ coat: [body, patch, patch2] }: { coat: [string, string, string] }) => (
-  <svg width="150" height="110" viewBox="-42 -82 100 84" aria-hidden="true">
+  <svg width="150" height="110" viewBox="-42 -82 100 84" aria-hidden="true" className="h-auto w-[96px] min-[600px]:w-[150px]">
     <rect x="-42" y="-2" width="100" height="4" fill="#7A4B2A" />
     <path d="M-28 -44 Q-36 -36 -33 -22" stroke={body} strokeWidth="3" fill="none" strokeLinecap="round" />
     <rect x="-23" y="-28" width="6" height="28" fill="#3A2619" />
@@ -40,7 +40,7 @@ const Cow = ({ coat: [body, patch, patch2] }: { coat: [string, string, string] }
 
 /** Coins and a note, for imvulamlomo, which is paid in money */
 const Coins = () => (
-  <svg width="120" height="96" viewBox="0 0 120 96" aria-hidden="true">
+  <svg width="120" height="96" viewBox="0 0 120 96" aria-hidden="true" className="h-auto w-[78px] min-[600px]:w-[120px]">
     <rect x="0" y="84" width="120" height="12" fill="#7A4B2A" />
     <ellipse cx="44" cy="80" rx="22" ry="7" fill="#B98A1B" />
     <rect x="22" y="68" width="44" height="12" fill="#D9A420" />
@@ -71,14 +71,14 @@ const CattleCard = ({ cow, open, onToggle }: CardProps) => {
   const color = { color: group.color };
   // A class, not the hidden attribute, which `flex` would override
   const face = (showing: boolean) =>
-    `${showing ? 'flex' : 'hidden'} w-full flex-grow flex-col px-5 pb-5 pt-[18px] motion-safe:animate-fade-in`;
+    `${showing ? 'flex' : 'hidden'} w-full flex-grow flex-col px-3 pb-3.5 pt-3 min-[600px]:px-5 min-[600px]:pb-5 min-[600px]:pt-[18px] motion-safe:animate-fade-in`;
 
   return (
     <button
       type="button"
       aria-pressed={open}
       onClick={onToggle}
-      className={`flex min-h-[330px] flex-col overflow-hidden rounded-md border border-rule text-left text-ink shadow-[0_14px_30px_-22px_rgba(43,30,22,0.45)] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#2A5C8F] ${
+      className={`flex flex-col min-[600px]:min-h-[330px] overflow-hidden rounded-md border border-rule text-left text-ink shadow-[0_14px_30px_-22px_rgba(43,30,22,0.45)] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#2A5C8F] ${
         open ? 'bg-paper-light' : 'bg-[#F7EFE2] hover:bg-paper-light'
       }`}
     >
@@ -86,39 +86,39 @@ const CattleCard = ({ cow, open, onToggle }: CardProps) => {
 
       <span className={face(!open)}>
         <span className="flex items-baseline justify-between">
-          <span className="font-display text-[30px] font-semibold leading-none" style={color}>
+          <span className="font-display text-2xl font-semibold leading-none min-[600px]:text-[30px]" style={color}>
             {cow.id}
           </span>
-          <span className="text-xs font-medium uppercase tracking-[0.12em] text-ink-soft">{group.label}</span>
+          <span className="text-[10px] font-medium uppercase tracking-[0.1em] text-ink-soft min-[600px]:text-xs min-[600px]:tracking-[0.12em]">{group.label}</span>
         </span>
-        <span className="mb-3.5 mt-1.5 flex h-[130px] items-end justify-center rounded bg-[#EBD5A8]">
+        <span className="mb-2.5 mt-1.5 flex h-[84px] items-end justify-center rounded bg-[#EBD5A8] min-[600px]:mb-3.5 min-[600px]:h-[130px]">
           {cow.money || !cow.coat ? <Coins /> : <Cow coat={cow.coat} />}
         </span>
-        <span className="font-display text-[22px] font-semibold leading-tight">{cow.english}</span>
-        <span lang="zu" className="mt-0.5 font-display text-[19px] italic leading-snug text-ink-soft">
+        <span className="font-display text-[17px] font-semibold leading-tight min-[600px]:text-[22px]">{cow.english}</span>
+        <span lang="zu" className="mt-0.5 font-display text-[15px] italic leading-snug text-ink-soft min-[600px]:text-[19px]">
           {cow.name}
         </span>
       </span>
 
       <span className={`${face(open)} gap-2.5`}>
         <span className="flex items-baseline justify-between">
-          <span lang="zu" className="font-display text-2xl font-medium italic leading-tight">
+          <span lang="zu" className="font-display text-lg font-medium italic leading-tight min-[600px]:text-2xl">
             {cow.name}
           </span>
-          <span className="font-display text-xl font-semibold" style={color}>
+          <span className="font-display text-base font-semibold min-[600px]:text-xl" style={color}>
             {cow.id}
           </span>
         </span>
-        <span className="text-[13px] font-medium uppercase tracking-[0.12em]" style={color}>
+        <span className="text-[11px] font-medium uppercase tracking-[0.1em] min-[600px]:text-[13px] min-[600px]:tracking-[0.12em]" style={color}>
           For {cow.forWhom}
         </span>
-        <span className="text-[17px] leading-[1.55]">{cow.meaning}</span>
+        <span className="text-[15px] leading-normal min-[600px]:text-[17px] min-[600px]:leading-[1.55]">{cow.meaning}</span>
         {cow.note && (
-          <span className="border-t border-rule pt-2.5 text-[15px] italic leading-normal text-ink-soft">
+          <span className="border-t border-rule pt-2.5 text-sm italic leading-normal text-ink-soft min-[600px]:text-[15px]">
             {cow.note}
           </span>
         )}
-        <span className="mt-auto text-sm text-ink-soft" aria-hidden="true">
+        <span className="mt-auto text-[13px] text-ink-soft min-[600px]:text-sm" aria-hidden="true">
           Tap to turn back
         </span>
       </span>
@@ -243,7 +243,7 @@ const CattlePage = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-5">
+        <div className="grid grid-cols-2 items-start gap-3 min-[600px]:items-stretch min-[600px]:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] min-[600px]:gap-5">
           {shown.map((cow) => (
             <CattleCard
               key={cow.id}
