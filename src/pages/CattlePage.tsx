@@ -243,7 +243,7 @@ const CattlePage = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 items-start gap-3 min-[600px]:items-stretch min-[600px]:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] min-[600px]:gap-5">
+        <div className="grid grid-cols-2 gap-3 min-[600px]:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] min-[600px]:gap-5">
           {shown.map((cow) => (
             <CattleCard
               key={cow.id}
