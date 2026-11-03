@@ -116,6 +116,26 @@ const StageChapter: React.FC<StageChapterProps> = ({
         )}
       </div>
 
+      {step.passages?.map((passage) => (
+        <section key={passage.title} className="mt-9 lg:mt-11">
+          <h2 className="mb-2.5 font-display text-[1.625rem] font-semibold leading-tight lg:mb-3 lg:text-[1.875rem]">
+            {passage.title}
+          </h2>
+          <div className="space-y-4">
+            {passage.paragraphs.map((paragraph, i) => (
+              <div key={i}>
+                <p>{paragraph.en}</p>
+                {paragraph.zu && (
+                  <p lang="zu" className="mt-1 text-base italic text-ink-soft lg:text-lg">
+                    {paragraph.zu}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+
       {step.tool && (
         <aside className="mt-9 border-t border-rule pt-6 lg:mt-11 lg:pt-7">
           <p>{step.tool.description}</p>

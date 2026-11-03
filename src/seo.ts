@@ -13,6 +13,7 @@ export const SITE_URL = 'https://lobola.dimba.co.za';
 export const SITE_NAME = 'Lobola Hub';
 
 const GUIDE_PATH = '/guide/zulu';
+const CATTLE_PATH = `${GUIDE_PATH}/cattle`;
 const OG_IMAGE = `${SITE_URL}/og-image.png`;
 
 export interface PageHead {
@@ -34,6 +35,11 @@ const pages: Record<string, PageSeo> = {
     title: 'Zulu Lobola Guide: Every Stage, Step by Step',
     description:
       'Follow Zulu lobola stage by stage: the letter, the abakhongi, umcelo, umembeso, seeing the cattle, umbondo and the wedding day.',
+  },
+  [CATTLE_PATH]: {
+    title: 'How Many Cows for Zulu Lobola? The Eleven Cattle Explained',
+    description:
+      'Zulu lobola is customarily eleven cattle, each with a name and a meaning. Which six are the cattle of the ancestors, which five Shepstone added, and who each one honours.',
   },
   '/letter': {
     title: 'Write a Lobola Letter in English or isiZulu',
@@ -59,6 +65,7 @@ export const PAGE_PATHS = [
   '/',
   GUIDE_PATH,
   ...zuluData.steps.map((step) => stagePath(step.id)),
+  CATTLE_PATH,
   '/letter',
   '/faq',
 ];
@@ -67,6 +74,20 @@ const withSiteName = (title: string) =>
   title.startsWith(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
 
 const publisher = { '@type': 'Organization', name: SITE_NAME, url: `${SITE_URL}/` };
+
+const article = (headline: string, description: string, url: string, images: string[]) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline,
+  description,
+  url,
+  mainEntityOfPage: url,
+  image: images,
+  inLanguage: 'en',
+  isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: `${SITE_URL}/` },
+  author: publisher,
+  publisher,
+});
 
 const breadcrumbs = (trail: { name: string; path: string }[]) => ({
   '@context': 'https://schema.org',
@@ -101,6 +122,12 @@ export const pageHead = (pathname: string): PageHead => {
     if (path === GUIDE_PATH) jsonLd.push(breadcrumbs([home, guide]));
     if (path === '/faq') jsonLd.push(faqPage(), breadcrumbs([home, { name: 'FAQ', path }]));
     if (path === '/letter') jsonLd.push(breadcrumbs([home, { name: 'Letter builder', path }]));
+    if (path === CATTLE_PATH) {
+      jsonLd.push(
+        article(page.title, page.description, SITE_URL + path, [OG_IMAGE]),
+        breadcrumbs([home, guide, { name: 'The eleven cattle', path }]),
+      );
+    }
     return { title: withSiteName(page.title), description: page.description, canonical: SITE_URL + path, jsonLd };
   }
 
@@ -114,19 +141,7 @@ export const pageHead = (pathname: string): PageHead => {
       description: seo.description,
       canonical: url,
       jsonLd: [
-        {
-          '@context': 'https://schema.org',
-          '@type': 'Article',
-          headline: seo.title,
-          description: seo.description,
-          url,
-          mainEntityOfPage: url,
-          image: step.media?.src ? [SITE_URL + step.media.src, OG_IMAGE] : [OG_IMAGE],
-          inLanguage: 'en',
-          isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: `${SITE_URL}/` },
-          author: publisher,
-          publisher,
-        },
+        article(seo.title, seo.description, url, step.media?.src ? [SITE_URL + step.media.src, OG_IMAGE] : [OG_IMAGE]),
         breadcrumbs([home, guide, { name, path }]),
       ],
     };

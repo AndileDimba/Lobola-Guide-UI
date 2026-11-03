@@ -207,6 +207,26 @@ export const zuluData: NationData = {
           "Commonly this is how the day unfolds — but families and regions differ, and each " +
           "home has its own way. Treat this as a guide, not a rule.",
       },
+      // isiZulu to come from the cultural owner
+      passages: [
+        {
+          title: "The six cows at the gate",
+          paragraphs: [
+            {
+              en: "Outside the gate, the negotiators call the family's praises and say they have come with six cows to ask for a hand in marriage. They never say which daughter, and the six cows do not need to be there.",
+            },
+            {
+              en: "Once inside, they are asked to repeat what they said, and a mistake in the praises costs a small fine. Then they are asked the colours of the six cows, and both families write them down.",
+            },
+          ],
+        },
+      ],
+      tool: {
+        to: "/guide/zulu/cattle",
+        label: "The eleven cattle",
+        description:
+          "Each of the cattle has a name, a person it honours and a meaning. See all eleven, and which six are the cattle of the ancestors.",
+      },
     },
     {
       id: "gifting_of_bride_family_umembeso",
@@ -293,7 +313,17 @@ export const zuluData: NationData = {
           en: "A day is set for the cattle to be delivered to the bride's home.",
           zu: "Kukhishwa usuku lokuthi izinkomo zizohanjiswa nini kubo kamakoti.",
         },
+        // isiZulu to come from the cultural owner
+        {
+          en: "The families check the cows' colours against what was written down on negotiations day. If they do not match, a small fine is paid.",
+        },
       ],
+      tool: {
+        to: "/guide/zulu/cattle",
+        label: "The eleven cattle",
+        description:
+          "Before the cattle are seen, learn what each of the eleven is for and who it honours.",
+      },
       // isiZulu caption to come from the cultural owner
       media: {
         kind: "illustration",

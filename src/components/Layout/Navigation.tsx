@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 const links = [
   { to: '/', label: 'Home' },
   { to: '/guide/zulu', label: 'Zulu Guide' },
+  { to: '/guide/zulu/cattle', label: 'The eleven cattle' },
   { to: '/letter', label: 'Letter builder' },
   { to: '/faq', label: 'FAQ' },
 ];
@@ -12,9 +13,13 @@ const Navigation = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Prefix match so each stage at /guide/zulu/<stage> keeps the guide link lit
-  const isActive = (path: string) =>
-    path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
+  // Prefix match so each stage at /guide/zulu/<stage> keeps the guide link
+  // lit; the longest match wins, so the cattle page lights only its own link
+  const current = links
+    .map(({ to }) => to)
+    .filter((to) => (to === '/' ? location.pathname === '/' : location.pathname.startsWith(to)))
+    .sort((a, b) => b.length - a.length)[0];
+  const isActive = (path: string) => path === current;
 
   const closeMenu = () => setIsMenuOpen(false);
 
