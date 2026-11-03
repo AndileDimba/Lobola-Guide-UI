@@ -7,8 +7,10 @@ this document covers how the code fits together.
 
 ## Stack
 
-React 19 + TypeScript, Vite, Tailwind CSS 3, React Router 7, deployed on Vercel
-(`vercel.json` rewrites all routes to `index.html` for client-side routing).
+React 19 + TypeScript, Vite, Tailwind CSS 3, React Router 7, deployed on Vercel.
+Every page is written out as its own HTML file at build time (see "Search
+engines and link previews"), and `vercel.json` turns on `cleanUrls`, so `/faq`
+is served from `faq.html`. Any other address gets `404.html` with a 404 status.
 Three runtime dependencies — react, react-dom, react-router-dom. Keep it that
 way unless there is a strong reason.
 
@@ -33,7 +35,9 @@ something belongs in data instead.
 
 ```text
 src/
-├── main.tsx                    React entry point
+├── main.tsx                    Browser entry: takes over the prebuilt page (or draws it in dev)
+├── entry-server.tsx            Build-time entry: draws one page to HTML
+├── seo.ts                      Each page's title, description, canonical address, JSON-LD
 ├── App.tsx                     Routes + shared layout (Header, Footer, ScrollToTop)
 ├── index.css                   Tailwind entry + a little global CSS
 ├── pages/
@@ -42,7 +46,8 @@ src/
 │   ├── FAQPage.tsx             FAQ content + category filtering
 │   └── NotFoundPage.tsx
 ├── components/
-│   ├── Layout/                 Header, Navigation (responsive), Footer, ScrollToTop
+│   ├── Layout/                 Header, Navigation (responsive), Footer, ScrollToTop,
+│   │                           PageHead (keeps the head current), UpdatePrompt
 │   ├── UI/
 │   │   ├── StageChapter.tsx    A stage as a chapter: titles, lede, scene slot, Previous/Next
 │   │   ├── SceneFigure.tsx     The scene slot: media, or a placeholder of the same size
@@ -52,7 +57,10 @@ src/
 │   └── Icons/
 └── data/
     ├── types.ts                The content contract — read this first
-    └── zulu.ts                 All Zulu content (theme + stages + scenes)
+    ├── zulu.ts                 All Zulu content (theme + stages + scenes)
+    └── faq.ts                  FAQ questions and answers
+scripts/
+└── prerender.ts                Vite plugin: writes every page, 404.html and sitemap.xml
 ```
 
 Routes (in `App.tsx`): `/` landing, `/guide/zulu` the guide (first stage),
@@ -69,6 +77,7 @@ NationData
 ├── theme: Theme            Tailwind class strings — the nation's "skin"
 └── steps: Step[]
      ├── id, title, zuluTitle?, summary?, description
+     ├── seo?               Title and description for search results and link previews
      ├── details: Bilingual[]  What happens: en, with the isiZulu beneath
      ├── media?             A picture for the scene slot before the stage has a scene
      ├── tool?              A link to a page that helps do this stage (to, label, description)
@@ -125,13 +134,40 @@ There is no state library and none is needed yet.
 - No backend and no API. Everything ships as static assets.
 - The site is a PWA. `vite-plugin-pwa` builds a service worker that saves
   every page, picture and icon on the first visit, so the site and the
-  letter builder work offline, and an installed copy opens like an app (the
+  letter builder work offline (each page is its own file, found by adding
+  `.html` to the address; any other address shows the not-found page), and an installed copy opens like an app (the
   manifest is `public/site.webmanifest`). A new deploy does not take over by
   itself: `UpdatePrompt` offers "A new version of Lobola Hub is ready" and
   reloads when the reader taps Refresh.
 - Vercel Web Analytics counts page views (no cookies). The letter builder also
   sends a `Letter shared` event with only the method (`whatsapp`, `print`,
   `copy`) and the language; custom events are counted on Vercel Pro only.
+
+## Search engines and link previews
+
+Search engines and link previewers often do not run scripts, so each page is
+drawn at build time with its own head:
+
+- `npm run build` first builds `src/entry-server.tsx` into `dist-ssr/`, then
+  builds the site. The `prerender` plugin in `scripts/prerender.ts` runs once
+  the site is written: for every address in `PAGE_PATHS` (in `src/seo.ts`) it
+  draws the page with `renderToString` and writes it to `dist/` (`/` is
+  `index.html`, `/faq` is `faq.html`, a stage is `guide/zulu/<id>.html`). It
+  also writes `404.html` and `sitemap.xml`, then deletes `dist-ssr/`. The
+  service worker is made after this, so it keeps every page.
+- `index.html` holds `<!--page-head-->` where each page's title, description,
+  canonical address, link-preview tags and JSON-LD go. `pageHead` in
+  `src/seo.ts` decides them: `Article` and `BreadcrumbList` on stages,
+  `FAQPage` on the FAQ, `noindex` on the not-found page.
+- In the browser, `main.tsx` hydrates the drawn page, and `PageHead` updates
+  the head when the reader moves to another page inside the site.
+- `public/robots.txt` points to the sitemap. A new page needs adding to
+  `PAGE_PATHS`; a new stage is picked up from the data, with its words in
+  the stage's `seo` field.
+- Code that runs while a page is drawn must not touch `window`,
+  `localStorage` or `document`. Read them in an effect or an event handler,
+  as the letter builder does with its saved answers, or the page drawn at
+  build time will not match the one in the browser.
 
 ## Styling
 
@@ -148,7 +184,7 @@ IntelliSense extension.
 ```bash
 npm run dev       # Vite dev server, http://localhost:5173
 npm run lint      # ESLint (flat config in eslint.config.js)
-npm run build     # tsc -b && vite build
+npm run build     # tsc -b, the build-time entry, then the site with every page drawn
 npm run preview   # serve the production build
 ```
 

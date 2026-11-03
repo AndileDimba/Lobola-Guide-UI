@@ -96,18 +96,29 @@ const keepPrefixes = (paragraph: string) =>
   );
 
 const LetterPage = () => {
-  const [{ fields, lang }, setSaved] = useState<Saved>(loadSaved);
+  const [{ fields, lang }, setSaved] = useState<Saved>({ fields: emptyLetterFields, lang: 'en' });
+  const [loaded, setLoaded] = useState(false);
   const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'failed'>('idle');
   const { theme } = zuluData;
 
+  // The page is first drawn empty at build time, so a saved letter is
+  // brought back once it is on screen, and only then saved again
   useEffect(() => {
+    // Saved answers live in the browser, which the build does not have
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setSaved(loadSaved());
+    setLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (!loaded) return;
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({ fields, lang }));
     } catch {
       // Private browsing or full storage: the letter still works, it just
       // will not be here next time
     }
-  }, [fields, lang]);
+  }, [fields, lang, loaded]);
 
   useEffect(() => {
     if (copyStatus === 'idle') return;

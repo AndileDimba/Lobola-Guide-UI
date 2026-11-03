@@ -1,4 +1,5 @@
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import NotFoundPage from "./NotFoundPage";
 import { zuluData } from "../data/zulu";
 import type { Step } from "../data/types";
 import BeadBand from "../components/UI/BeadBand";
@@ -15,7 +16,8 @@ const ZuluGuidePage = () => {
   // The guide opens on the first stage; each stage has its own address so it
   // can be shared and the back button walks the journey.
   const index = stageId ? steps.findIndex((step) => step.id === stageId) : 0;
-  if (index === -1) return <Navigate to={GUIDE_PATH} replace />;
+  // An unknown stage is a missing page, the same as any other wrong address
+  if (index === -1) return <NotFoundPage />;
 
   const step = steps[index];
   const journey = { steps, currentIndex: index, theme, hrefFor };
