@@ -4,7 +4,8 @@ import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import App from './App.tsx'
 
-export { PAGE_PATHS, SITE_URL, headHtml, pageHead } from './seo.ts'
+export { PAGE_PATHS, headHtml, pageHead } from './seo.ts'
+export { SITE_URL } from './site.ts'
 
 /** Draws one page to HTML at build time, the same way the browser would */
 export const render = (url: string) =>

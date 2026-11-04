@@ -24,7 +24,8 @@ const NOT_FOUND_PATH = '/404'
 /**
  * Writes every page out as its own HTML file at build time, already drawn,
  * with its own head, so search engines and link previews see the content
- * without running scripts. Also writes the sitemap from the same page list.
+ * without running scripts. Also writes the sitemap from the same page list,
+ * and robots.txt pointing to it.
  *
  * It runs once the browser build is written and before the service worker is
  * made, so the service worker keeps every page for offline use.
@@ -72,10 +73,14 @@ export const prerender = (): Plugin => {
         join(outDir, 'sitemap.xml'),
         `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`,
       )
+      await writeFile(
+        join(outDir, 'robots.txt'),
+        `User-agent: *\nAllow: /\n\nSitemap: ${server.SITE_URL}/sitemap.xml\n`,
+      )
 
       // The server entry is only needed to draw the pages
       await rm(resolve(root, SERVER_OUT_DIR), { recursive: true, force: true })
-      this.info?.(`prerendered ${server.PAGE_PATHS.length} pages, 404.html and sitemap.xml`)
+      this.info?.(`prerendered ${server.PAGE_PATHS.length} pages, 404.html, sitemap.xml and robots.txt`)
     },
   }
 }

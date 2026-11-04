@@ -12,7 +12,7 @@ A free, respectful place to learn about **lobola / ilobolo** — starting with t
 Zulu (AmaZulu) journey, told as a story you can watch rather than a manual you
 read.
 
-**Live site: [lobola.dimba.co.za](https://lobola.dimba.co.za)**
+**Live site: [lobolahub.co.za](https://lobolahub.co.za)**
 
 The site teaches the general shape of the journey: the stages, the roles, the
 words. It is **a learning place, not an authority** — practices differ between

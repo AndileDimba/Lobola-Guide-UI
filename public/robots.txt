@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://lobola.dimba.co.za/sitemap.xml
