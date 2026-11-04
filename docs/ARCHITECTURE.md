@@ -147,9 +147,10 @@ There is no state library and none is needed yet.
 - Readers who saved the site on an old address (`lobola.dimba.co.za`, or
   `www.lobolahub.co.za`, briefly the main address) are moved across by
   `vercel.json`: on those hosts every path redirects (308) to the same path
-  on `lobolahub.co.za`, except `/sw.js`, which serves `public/sw-retire.js`.
-  That worker clears the saved copy, unregisters itself and sends open tabs
-  to the new address. Both hosts must be plain domains on the project in
+  on `lobolahub.co.za`, except `/sw.js`. The service worker checks its own
+  host first (`scripts/retire-other-hosts.ts` wraps the generated `sw.js`):
+  anywhere but `lobolahub.co.za` and `localhost` it skips Workbox, clears
+  the saved copy, unregisters itself and sends open tabs to the new address. Both hosts must be plain domains on the project in
   Vercel, not Vercel redirects, for this to run. Keep it until at least
   May 2027.
 - Vercel Web Analytics counts page views (no cookies). The letter builder also
