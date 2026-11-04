@@ -13,17 +13,5 @@
       "destination": "https://lobolahub.co.za/:path",
       "permanent": true
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/sw.js",
-      "has": [{ "type": "host", "value": "lobola.dimba.co.za" }],
-      "destination": "/sw-retire.js"
-    },
-    {
-      "source": "/sw.js",
-      "has": [{ "type": "host", "value": "www.lobolahub.co.za" }],
-      "destination": "/sw-retire.js"
-    }
   ]
 }

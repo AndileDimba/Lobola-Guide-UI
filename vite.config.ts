@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 import { prerender } from './scripts/prerender'
+import { retireOtherHosts } from './scripts/retire-other-hosts'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -19,13 +20,15 @@ export default defineConfig({
       manifest: false,
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,webmanifest}'],
-        // The link-preview image is for other sites, never shown here, and
-        // sw-retire.js only runs on the old addresses (see vercel.json)
-        globIgnores: ['og-image.png', 'sw-retire.js'],
+        // The link-preview image is for other sites, never shown here
+        globIgnores: ['og-image.png'],
         // Each page is kept as its own file (faq.html for /faq), and the
         // service worker finds it by adding .html. Any other address shows
         // the not-found page, offline too.
         navigateFallback: '/404.html',
+        // No page uses query parameters, so /faq?anything is still faq.html
+        // (by default only utm_ and fbclid are ignored)
+        ignoreURLParametersMatching: [/.*/],
         // Vercel's own paths, such as analytics, are not pages, and neither
         // are files such as sitemap.xml and robots.txt
         navigateFallbackDenylist: [/^\/_vercel\//, /\.[a-z0-9]+$/i],
@@ -48,5 +51,8 @@ export default defineConfig({
         ],
       },
     }),
+    // On the old addresses the service worker clears itself and moves the
+    // reader to lobolahub.co.za. Must come after VitePWA, which writes sw.js.
+    retireOtherHosts(),
   ],
 })
