@@ -19,8 +19,9 @@ export default defineConfig({
       manifest: false,
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,webmanifest}'],
-        // The link-preview image is for other sites, never shown here
-        globIgnores: ['og-image.png'],
+        // The link-preview image is for other sites, never shown here, and
+        // sw-retire.js only runs on the old addresses (see vercel.json)
+        globIgnores: ['og-image.png', 'sw-retire.js'],
         // Each page is kept as its own file (faq.html for /faq), and the
         // service worker finds it by adding .html. Any other address shows
         // the not-found page, offline too.

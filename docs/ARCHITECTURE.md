@@ -144,6 +144,14 @@ There is no state library and none is needed yet.
   manifest is `public/site.webmanifest`). A new deploy does not take over by
   itself: `UpdatePrompt` offers "A new version of Lobola Hub is ready" and
   reloads when the reader taps Refresh.
+- Readers who saved the site on an old address (`lobola.dimba.co.za`, or
+  `www.lobolahub.co.za`, briefly the main address) are moved across by
+  `vercel.json`: on those hosts every path redirects (308) to the same path
+  on `lobolahub.co.za`, except `/sw.js`, which serves `public/sw-retire.js`.
+  That worker clears the saved copy, unregisters itself and sends open tabs
+  to the new address. Both hosts must be plain domains on the project in
+  Vercel, not Vercel redirects, for this to run. Keep it until at least
+  May 2027.
 - Vercel Web Analytics counts page views (no cookies). The letter builder also
   sends a `Letter shared` event with only the method (`whatsapp`, `print`,
   `copy`) and the language; custom events are counted on Vercel Pro only.
