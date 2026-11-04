@@ -37,6 +37,7 @@ something belongs in data instead.
 src/
 ├── main.tsx                    Browser entry: takes over the prebuilt page (or draws it in dev)
 ├── entry-server.tsx            Build-time entry: draws one page to HTML
+├── site.ts                     The site's address (SITE_URL): the one place the domain is written
 ├── seo.ts                      Each page's title, description, canonical address, JSON-LD
 ├── App.tsx                     Routes + shared layout (Header, Footer, ScrollToTop)
 ├── index.css                   Tailwind entry + a little global CSS
@@ -165,7 +166,8 @@ drawn at build time with its own head:
   `FAQPage` on the FAQ, `noindex` on the not-found page.
 - In the browser, `main.tsx` hydrates the drawn page, and `PageHead` updates
   the head when the reader moves to another page inside the site.
-- `public/robots.txt` points to the sitemap. A new page needs adding to
+- The build also writes `robots.txt`, pointing to the sitemap. Every
+  address, there and in the head, comes from `SITE_URL` in `src/site.ts`. A new page needs adding to
   `PAGE_PATHS`; a new stage is picked up from the data, with its words in
   the stage's `seo` field.
 - Code that runs while a page is drawn must not touch `window`,

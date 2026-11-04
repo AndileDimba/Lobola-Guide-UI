@@ -13,6 +13,7 @@ import {
   type LetterLanguage,
 } from '../data/letter';
 import BeadBand from '../components/UI/BeadBand';
+import { SITE_HOST } from '../site';
 
 // The letter stays on this device: it is kept in the browser and never sent
 const STORAGE_KEY = 'lobola-hub:letter';
@@ -262,7 +263,7 @@ const LetterPage = () => {
                   sits at its foot, inside the margin. In the flow rather than
                   position: fixed, which print previews do not all honour. */}
               <p className="hidden text-[10pt] text-ink-faint print:mt-auto print:block print:pt-10">
-                Written with Lobola Hub &middot; lobola.dimba.co.za
+                Written with Lobola Hub &middot; {SITE_HOST}
               </p>
             </article>
 
