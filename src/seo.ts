@@ -1,6 +1,7 @@
 import { zuluData } from './data/zulu';
 import { faqs } from './data/faq';
 import type { PageSeo } from './data/types';
+import { SITE_URL } from './site';
 
 /**
  * What each page tells search engines and link previews: its title,
@@ -9,7 +10,6 @@ import type { PageSeo } from './data/types';
  * and PageHead keeps it up to date as the reader moves around the site.
  */
 
-export const SITE_URL = 'https://lobola.dimba.co.za';
 export const SITE_NAME = 'Lobola Hub';
 
 const GUIDE_PATH = '/guide/zulu';
@@ -170,6 +170,8 @@ export const headHtml = (head: PageHead) => {
     head.canonical ? `<meta property="og:url" content="${head.canonical}" />` : '',
     `<meta name="twitter:title" content="${title}" />`,
     `<meta name="twitter:description" content="${description}" />`,
+    `<meta property="og:image" content="${OG_IMAGE}" />`,
+    `<meta name="twitter:image" content="${OG_IMAGE}" />`,
     ...head.jsonLd.map((data) => `<script type="application/ld+json" data-page>${jsonLdText(data)}</script>`),
   ];
   return lines.filter(Boolean).join('\n    ');
