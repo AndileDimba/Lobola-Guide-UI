@@ -93,7 +93,7 @@ export const cattle: NamedCattle[] = [
     forWhom: "the bride and her in-laws",
     coat: ["#5A3E26", "#EDE3CF", "#5A3E26"],
     meaning:
-      "Slaughtered by the bride at her new home to please her in-laws, often about a year after the wedding. It “looks after” her: she and her children get amasi from it.",
+      "In some families, it is slaughtered by the bride at her new home to please her in-laws, often about a year after the wedding. It “looks after” her: she and her children get amasi from it.",
   },
   {
     id: 7,
