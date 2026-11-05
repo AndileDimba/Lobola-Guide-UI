@@ -274,7 +274,7 @@ const CattlePage = () => {
                 Before colonial rule there was no fixed number. Families asked what they chose, and six named cattle carried the meaning of the marriage. In colonial Natal, Theophilus Shepstone (uSomtsewu) regulated lobola. Accounts differ on the details: some say he fixed ten cattle plus the mother’s beast, ingquthu, which makes the eleven families ask for today. Higher numbers applied to the daughters of chiefs and royalty.
               </p>
               <p className="mt-[18px]">
-                The five he added are mostly cattle slaughtered at the wedding, plus imvulamlomo, which today is paid in money.
+                Of the five he added, only two are slaughtered at the wedding: inhlabisathimba for the bridal party and isiwunkulu for the women. Isiqondo is given so she and her future children never go hungry in the marriage, umncamo is her farewell at her own home, and imvulamlomo is today paid in money.
               </p>
             </section>
 
