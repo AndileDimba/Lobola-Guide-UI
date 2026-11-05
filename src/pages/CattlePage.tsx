@@ -271,10 +271,10 @@ const CattlePage = () => {
                 How six became eleven
               </h2>
               <p>
-                Before colonial rule there was no fixed number. Families asked what they chose, and six named cattle carried the meaning of the marriage. In 1859 Theophilus Shepstone, known as uSomtsewu, fixed lobola in Natal at eleven cattle for an ordinary daughter, fifteen for a chief's daughter and thirty for a princess.
+                Before colonial rule there was no fixed number. Families asked what they chose, and six named cattle carried the meaning of the marriage. In colonial Natal, Theophilus Shepstone (uSomtsewu) regulated lobola. Accounts differ on the details: some say he fixed ten cattle plus the mother’s beast, ingquthu, which makes the eleven families ask for today. Higher numbers applied to the daughters of chiefs and royalty.
               </p>
               <p className="mt-[18px]">
-                The five he added are mostly cattle slaughtered at the wedding, plus imvulamlomo, which today is paid in money.
+                Of the five he added, only two are slaughtered at the wedding: inhlabisathimba for the bridal party and isiwunkulu for the women. Isiqondo is given so she and her future children never go hungry in the marriage, umncamo is her farewell at her own home, and imvulamlomo is today paid in money.
               </p>
             </section>
 
@@ -302,6 +302,9 @@ const CattlePage = () => {
               </p>
               <p className="mt-[18px]">
                 In some parts of KwaZulu-Natal, families now also ask for isicelo (umcelo) before cattle are discussed: a cash request that can reach R{NB_SPACE}30{NB_SPACE}000 or more. The father and mother may each ask for their own isicelo, usually with the father's larger, for example R{NB_SPACE}15{NB_SPACE}000 and R{NB_SPACE}10{NB_SPACE}000. It is not part of the original custom, but it has become the norm in some areas.
+              </p>
+              <p className="mt-[18px]">
+                What changes the price has changed too. Traditionally, the number of cattle went down if the bride was no longer a virgin or had a child by another man. Today the count usually stays at eleven, but some families charge more when their daughter is educated, for example when she holds a degree. The difference shows up in the money: a larger isicelo, and a higher rand value per cow when the cattle are paid in cash. Traditionally one cow was valued highest and the rest less and less, but some families now price every cow high, and the cattle alone can come to more than R{NB_SPACE}100{NB_SPACE}000. Some see this as honouring what the family invested in her. Others argue lobola was never meant to price a woman’s education, and that it should fit what the groom can afford.
               </p>
               <p className="mt-[18px]">
                 Others see eleven as the custom their parents and grandparents followed, and the fairest common ground between two families. Both views are honest. What matters is that both families understand what each cow means before they agree.
