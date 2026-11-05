@@ -130,7 +130,7 @@ export const cattle: NamedCattle[] = [
     english: "So she never goes hungry",
     forWhom: "the bride, from her own family",
     coat: ["#FBF6EC", "#B5683E", "#FBF6EC"],
-    meaning: "Given to the bride by her own family, so she eats well and never goes hungry in her new home.",
+    meaning: "Given to the bride by her own family, so she and her future children eat well and never go hungry in her new home.",
     note: "Few families still give it.",
   },
   {
