@@ -211,12 +211,40 @@ export const zuluData: NationData = {
       passages: [
         {
           title: "The six cows at the gate",
-          paragraphs: [
+          blocks: [
             {
+              kind: "p",
               en: "Outside the gate, the negotiators call the family's praises and say they have come with six cows to ask for a hand in marriage. They never say which daughter, and the six cows do not need to be there.",
             },
             {
+              kind: "p",
               en: "Once inside, they are asked to repeat what they said, and a mistake in the praises costs a small fine. Then they are asked the colours of the six cows, and both families write them down.",
+            },
+          ],
+        },
+        {
+          title: "Who sits at the table",
+          blocks: [
+            {
+              kind: "p",
+              en: "The groom does not negotiate for himself, and neither do his parents. His family sends a small delegation, usually three or four people:",
+            },
+            {
+              kind: "ol",
+              items: [
+                "**The lead negotiator** (*umkhongi omdala*). He speaks for the family, calls the praises at the gate and leads the talks.",
+                "**His assistant.** He supports the lead negotiator and steps in when needed.",
+                "**The writer** (*unobhala*), often a woman. She records everything that is agreed.",
+                "**Optionally, one more woman,** such as the groom's sister. Two women work well when one of them is the writer.",
+              ],
+            },
+            {
+              kind: "p",
+              en: "**Why the writing matters.** Each family keeps its own written record of what was agreed: the cattle, their colours, the isicelo, the izibizo list and any fines. These letters are the proof both families return to later. When the bride's family comes to see the cattle, at umembeso, and again at umabo, the lists are read aloud and checked against what was written on this day.",
+            },
+            {
+              kind: "ask",
+              question: "Who has been the umkhongi omdala in our family before, and who would we ask today?",
             },
           ],
         },
@@ -288,6 +316,58 @@ export const zuluData: NationData = {
         alt: "The groom's mother, in a wide red hat, leads the groom and young men carrying a trunk, mats and a goat to the bride's home, where her family waits at the door.",
         caption: { en: "The groom's mother leads the gifts to the bride's home." },
       },
+      // isiZulu to come from the cultural owner
+      passages: [
+        {
+          title: "The izibizo list",
+          blocks: [
+            {
+              kind: "p",
+              en: "Izibizo are the gifts the bride's family asks the groom's family to bring. They are not part of the lobola cattle. They are gifts of thanks, chosen by her family and delivered at umembeso.",
+            },
+            { kind: "subhead", text: "How the list travels" },
+            {
+              kind: "ol",
+              items: [
+                "The bride's family writes the list as a letter.",
+                "On the day of the negotiations, the abakhongi ask for it and take it home.",
+                "The groom's family buys everything on it before umembeso.",
+              ],
+            },
+            { kind: "subhead", text: "What is usually on it" },
+            {
+              kind: "ul",
+              items: [
+                "Mats (*amacansi*)",
+                "Doeks (*amaduku*)",
+                "Blankets (*izingubo*)",
+                "A hat for the bride's father (*isigqoko sikababa*)",
+                "A shield for the bride's father (*isihlangu*)",
+                "A large three-legged pot (*ibhodwe*)",
+                "An overcoat (*ijazi*)",
+                "Groceries in bulk, for example 10 bags of 5\u00A0kg beans, 10 bags of 10\u00A0kg rice and 10 bags of maize meal",
+                "Many smaller items as well",
+              ],
+            },
+            {
+              kind: "p",
+              en: "The bride's brothers and sisters may each add one or two things they would like.",
+            },
+            {
+              kind: "p",
+              en: "**Gifts, not a shopping list.** Some families now ask for washing machines and other large appliances. These were never part of izibizo. The intention has always been gifts that honour the family, not a way to furnish a home.",
+            },
+            {
+              kind: "p",
+              en: "**The list is read aloud.** Both families keep a copy of the letter. At umembeso, it is read line by line as each item is handed over, so everyone can see the list has been honoured. At umabo the same happens in reverse: the bride's family reads their list as they hand over their gifts to the groom's family.",
+            },
+            {
+              kind: "ask",
+              question: "What was on the izibizo list when your parents married, and what would our family ask for today?",
+            },
+          ],
+        },
+      ],
     },
     {
       id: "ukubonwa_kwezinkomo",

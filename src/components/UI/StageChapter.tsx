@@ -4,6 +4,7 @@ import type { Step, Theme } from "../../data/types";
 import SceneFigure from "./SceneFigure";
 import SceneView from "./SceneView";
 import Suggestions from "./Suggestions";
+import { PassageSection } from "./Blocks";
 
 interface StageChapterProps {
   step: Step;
@@ -117,23 +118,7 @@ const StageChapter: React.FC<StageChapterProps> = ({
       </div>
 
       {step.passages?.map((passage) => (
-        <section key={passage.title} className="mt-9 lg:mt-11">
-          <h2 className="mb-2.5 font-display text-[1.625rem] font-semibold leading-tight lg:mb-3 lg:text-[1.875rem]">
-            {passage.title}
-          </h2>
-          <div className="space-y-4">
-            {passage.paragraphs.map((paragraph, i) => (
-              <div key={i}>
-                <p>{paragraph.en}</p>
-                {paragraph.zu && (
-                  <p lang="zu" className="mt-1 text-base italic text-ink-soft lg:text-lg">
-                    {paragraph.zu}
-                  </p>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
+        <PassageSection key={passage.title} passage={passage} />
       ))}
 
       {step.tool && (

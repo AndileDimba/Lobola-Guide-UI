@@ -1,7 +1,8 @@
 import { zuluData } from './data/zulu';
 import { faqs } from './data/faq';
+import { zuluArticles } from './data/articles';
 import type { PageSeo } from './data/types';
-import { SITE_URL } from './site';
+import { SAME_AS, SITE_LOGO, SITE_URL } from './site';
 
 /**
  * What each page tells search engines and link previews: its title,
@@ -59,6 +60,7 @@ const notFound: PageSeo = {
 };
 
 const stagePath = (id: string) => `${GUIDE_PATH}/${id}`;
+const articlePath = (id: string) => `${GUIDE_PATH}/${id}`;
 
 /** Every page worth listing in the sitemap and drawing at build time */
 export const PAGE_PATHS = [
@@ -66,6 +68,7 @@ export const PAGE_PATHS = [
   GUIDE_PATH,
   ...zuluData.steps.map((step) => stagePath(step.id)),
   CATTLE_PATH,
+  ...zuluArticles.map((article) => articlePath(article.id)),
   '/letter',
   '/faq',
 ];
@@ -73,7 +76,31 @@ export const PAGE_PATHS = [
 const withSiteName = (title: string) =>
   title.startsWith(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
 
-const publisher = { '@type': 'Organization', name: SITE_NAME, url: `${SITE_URL}/` };
+const ORGANIZATION_ID = `${SITE_URL}/#organization`;
+
+const organization = {
+  '@type': 'Organization',
+  '@id': ORGANIZATION_ID,
+  name: SITE_NAME,
+  url: SITE_URL,
+  logo: SITE_LOGO,
+  ...(SAME_AS.length > 0 && { sameAs: SAME_AS }),
+};
+
+const publisher = organization;
+
+// The home page says who the site is: the site itself, and who runs it
+const homeData = () => [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    url: SITE_URL,
+    inLanguage: 'en',
+    publisher: { '@id': ORGANIZATION_ID },
+  },
+  { '@context': 'https://schema.org', ...organization },
+];
 
 const article = (headline: string, description: string, url: string, images: string[]) => ({
   '@context': 'https://schema.org',
@@ -119,6 +146,7 @@ export const pageHead = (pathname: string): PageHead => {
   const page = pages[path];
   if (page) {
     const jsonLd: object[] = [];
+    if (path === '/') jsonLd.push(...homeData());
     if (path === GUIDE_PATH) jsonLd.push(breadcrumbs([home, guide]));
     if (path === '/faq') jsonLd.push(faqPage(), breadcrumbs([home, { name: 'FAQ', path }]));
     if (path === '/letter') jsonLd.push(breadcrumbs([home, { name: 'Letter builder', path }]));
@@ -129,6 +157,21 @@ export const pageHead = (pathname: string): PageHead => {
       );
     }
     return { title: withSiteName(page.title), description: page.description, canonical: SITE_URL + path, jsonLd };
+  }
+
+  const guideArticle = zuluArticles.find((a) => articlePath(a.id) === path);
+  if (guideArticle) {
+    const { title, description } = guideArticle.seo;
+    const url = SITE_URL + path;
+    return {
+      title: withSiteName(title),
+      description,
+      canonical: url,
+      jsonLd: [
+        article(title, description, url, [OG_IMAGE]),
+        breadcrumbs([home, guide, { name: guideArticle.title, path }]),
+      ],
+    };
   }
 
   const step = zuluData.steps.find((s) => stagePath(s.id) === path);
