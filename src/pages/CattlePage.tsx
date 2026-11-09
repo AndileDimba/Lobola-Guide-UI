@@ -317,8 +317,7 @@ const CattlePage = () => {
               </h2>
               <p className="text-lg leading-relaxed">
                 Some cattle depend on the bride's circumstances. Ingquthu and inhlawulo are owed by the man responsible, not the groom, and a family may agree fewer cattle when the bride has children by someone else. This is part of the custom, and nothing to be ashamed of.{' '}
-                {/* TODO: point this at the full explanation page once it exists */}
-                <Link to="/faq" className="text-clay underline decoration-1 underline-offset-4 hover:decoration-2">
+                <Link to="/guide/zulu/when-the-count-is-different" className="text-clay underline decoration-1 underline-offset-4 hover:decoration-2">
                   Read the full explanation
                 </Link>
               </p>

@@ -67,7 +67,8 @@ scripts/
 ```
 
 Routes (in `App.tsx`): `/` landing, `/guide/zulu` the guide (first stage),
-`/guide/zulu/cattle` the eleven cattle,
+`/guide/zulu/cattle` the eleven cattle, `/guide/zulu/<id>` a guide article from
+`src/data/articles.ts` (such as `when-the-count-is-different`),
 `/guide/zulu/:stageId` one stage by its `id`, `/letter` the letter builder,
 `/faq`, `*` not found.
 
@@ -85,8 +86,8 @@ NationData
      ├── details: Bilingual[]  What happens: en, with the isiZulu beneath
      ├── media?             A picture for the scene slot before the stage has a scene
      ├── tool?              A link to a page that helps do this stage (to, label, description)
-     ├── passages?          Short titled passages after what happens (title, Bilingual paragraphs;
-     │                      an isiZulu term in the English is written *like this* for italics)
+     ├── passages?          Short titled sections after what happens (title, blocks: paragraphs,
+     │                      sub-headings, lists, "Ask your elders"; *term* is italic, **lead-in** bold)
      └── scene?             The optional story layer
           ├── narration     English narration (required within a scene)
           ├── voice?        Phrase: isiZulu spoken line + English gloss + note

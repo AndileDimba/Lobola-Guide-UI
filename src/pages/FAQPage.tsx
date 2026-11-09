@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { ReactNode } from 'react';
 import { suggestionEmailHref } from '../data/feedback';
+import { Link } from 'react-router-dom';
 import { categoryLabels, faqs } from '../data/faq';
 
 // Answers are written as plain text: blank lines split paragraphs, and lines
@@ -135,6 +136,21 @@ const FAQPage = () => {
                 );
               })}
             </ul>
+
+            <section aria-labelledby="more-title" className="mt-12 lg:mt-16">
+              <h2 id="more-title" className="font-display text-[1.625rem] font-semibold leading-tight lg:text-[1.875rem]">
+                More in the guide
+              </h2>
+              <p className="mt-2.5 lg:mt-3">
+                <Link
+                  to="/guide/zulu/when-the-count-is-different"
+                  className="underline decoration-1 underline-offset-4 hover:decoration-2"
+                >
+                  When the count is different
+                </Link>
+                : how virginity, children and inhlawulo change which cattle are owed, and by whom.
+              </p>
+            </section>
 
             <section aria-labelledby="suggest-title" className="mt-12 lg:mt-16">
               <h2 id="suggest-title" className="font-display text-[1.625rem] font-semibold leading-tight lg:text-[1.875rem]">
