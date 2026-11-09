@@ -23,6 +23,18 @@ const NUMBER_WORDS = [
 // "four" reads like a book; past twelve, digits read better than words
 const inWords = (n: number) => NUMBER_WORDS[n - 1] ?? String(n);
 
+// isiZulu terms in a passage are written *like this* and set in italics
+const withTerms = (text: string) =>
+  text.split(/\*([^*]+)\*/).map((part, i) =>
+    i % 2 === 1 ? (
+      <em key={i} lang="zu">
+        {part}
+      </em>
+    ) : (
+      part
+    )
+  );
+
 const eyebrow =
   "text-[13px] font-medium uppercase leading-snug tracking-[0.16em]";
 
@@ -124,7 +136,7 @@ const StageChapter: React.FC<StageChapterProps> = ({
           <div className="space-y-4">
             {passage.paragraphs.map((paragraph, i) => (
               <div key={i}>
-                <p>{paragraph.en}</p>
+                <p>{withTerms(paragraph.en)}</p>
                 {paragraph.zu && (
                   <p lang="zu" className="mt-1 text-base italic text-ink-soft lg:text-lg">
                     {paragraph.zu}
