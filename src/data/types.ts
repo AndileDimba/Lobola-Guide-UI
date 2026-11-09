@@ -72,13 +72,29 @@ export interface PageSeo {
 }
 
 /**
- * A short titled passage on a stage page, such as "The six cows at the gate".
- * In the English, wrap an isiZulu term in asterisks (*amacansi*) to set it
- * in italics.
+ * One piece of a passage. In any of its text, write an isiZulu term
+ * *like this* to set it in italics, and a lead-in **like this** for bold.
  */
+export type Block =
+  | { kind: "p"; en: string; zu?: string } // English first, the isiZulu beneath
+  | { kind: "subhead"; text: string }
+  | { kind: "ol" | "ul"; items: string[] }
+  | { kind: "ask"; question: string }; // an "Ask your elders" question
+
+/** A short titled section of a guide page, such as "The six cows at the gate" */
 export interface Passage {
   title: string;
-  paragraphs: Bilingual[]; // English first, the isiZulu beneath
+  blocks: Block[];
+}
+
+/** A guide page that explains one subject in depth, beside the stages */
+export interface GuideArticle {
+  id: string; // served at /guide/zulu/<id>
+  title: string;
+  subtitle?: string;
+  seo: PageSeo;
+  intro: Block[];
+  sections: Passage[];
 }
 
 export interface Step {

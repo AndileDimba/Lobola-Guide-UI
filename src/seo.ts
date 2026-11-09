@@ -1,5 +1,6 @@
 import { zuluData } from './data/zulu';
 import { faqs } from './data/faq';
+import { zuluArticles } from './data/articles';
 import type { PageSeo } from './data/types';
 import { SAME_AS, SITE_LOGO, SITE_URL } from './site';
 
@@ -59,6 +60,7 @@ const notFound: PageSeo = {
 };
 
 const stagePath = (id: string) => `${GUIDE_PATH}/${id}`;
+const articlePath = (id: string) => `${GUIDE_PATH}/${id}`;
 
 /** Every page worth listing in the sitemap and drawing at build time */
 export const PAGE_PATHS = [
@@ -66,6 +68,7 @@ export const PAGE_PATHS = [
   GUIDE_PATH,
   ...zuluData.steps.map((step) => stagePath(step.id)),
   CATTLE_PATH,
+  ...zuluArticles.map((article) => articlePath(article.id)),
   '/letter',
   '/faq',
 ];
@@ -154,6 +157,21 @@ export const pageHead = (pathname: string): PageHead => {
       );
     }
     return { title: withSiteName(page.title), description: page.description, canonical: SITE_URL + path, jsonLd };
+  }
+
+  const guideArticle = zuluArticles.find((a) => articlePath(a.id) === path);
+  if (guideArticle) {
+    const { title, description } = guideArticle.seo;
+    const url = SITE_URL + path;
+    return {
+      title: withSiteName(title),
+      description,
+      canonical: url,
+      jsonLd: [
+        article(title, description, url, [OG_IMAGE]),
+        breadcrumbs([home, guide, { name: guideArticle.title, path }]),
+      ],
+    };
   }
 
   const step = zuluData.steps.find((s) => stagePath(s.id) === path);
