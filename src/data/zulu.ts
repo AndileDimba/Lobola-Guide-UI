@@ -210,6 +210,17 @@ export const zuluData: NationData = {
       // isiZulu to come from the cultural owner
       passages: [
         {
+          title: "Who goes to the table",
+          paragraphs: [
+            {
+              en: "The groom's family commonly sends three or four people: the *umkhongi omdala*, who leads the talks; his assistant; the *unobhala*, often a woman, who writes down everything said and agreed; and, if the family chooses, one more woman, such as a sister. Two women work well when one of them is the writer.",
+            },
+            {
+              en: "The written record matters. Each family keeps its letters as proof of what was agreed, and later of what was handed over.",
+            },
+          ],
+        },
+        {
           title: "The six cows at the gate",
           paragraphs: [
             {
@@ -288,6 +299,29 @@ export const zuluData: NationData = {
         alt: "The groom's mother, in a wide red hat, leads the groom and young men carrying a trunk, mats and a goat to the bride's home, where her family waits at the door.",
         caption: { en: "The groom's mother leads the gifts to the bride's home." },
       },
+      // isiZulu to come from the cultural owner
+      passages: [
+        {
+          title: "The izibizo list",
+          paragraphs: [
+            {
+              en: "Commonly, the bride's family writes the *izibizo* letter. The *abakhongi* ask for it on negotiations day and take it home, and the groom's family buys everything on it.",
+            },
+            {
+              en: "A typical list asks for mats (*amacansi*), doeks (*amaduku*), blankets (*izingubo*), a hat for the father (*isigqoko sikababa*), a shield for the father (*isihlangu*), a big three-legged pot (*ibhodwe*) and an overcoat (*ijazi*). It also asks for groceries in bulk, for example ten 5\u00A0kg bags of beans, ten 10\u00A0kg bags of rice and ten bags of maize meal, and many smaller things besides.",
+            },
+            {
+              en: "The bride's brothers and sisters may each add one or two things they would like.",
+            },
+            {
+              en: "Some families now ask for washing machines and other large appliances. These were never part of *izibizo*, which is meant as gifts.",
+            },
+            {
+              en: "Each family keeps its copy of the list. At umembeso it is read out line by line as each item is handed over.",
+            },
+          ],
+        },
+      ],
     },
     {
       id: "ukubonwa_kwezinkomo",
