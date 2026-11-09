@@ -1,7 +1,7 @@
 import { zuluData } from './data/zulu';
 import { faqs } from './data/faq';
 import type { PageSeo } from './data/types';
-import { SITE_URL } from './site';
+import { SAME_AS, SITE_LOGO, SITE_URL } from './site';
 
 /**
  * What each page tells search engines and link previews: its title,
@@ -73,7 +73,31 @@ export const PAGE_PATHS = [
 const withSiteName = (title: string) =>
   title.startsWith(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
 
-const publisher = { '@type': 'Organization', name: SITE_NAME, url: `${SITE_URL}/` };
+const ORGANIZATION_ID = `${SITE_URL}/#organization`;
+
+const organization = {
+  '@type': 'Organization',
+  '@id': ORGANIZATION_ID,
+  name: SITE_NAME,
+  url: SITE_URL,
+  logo: SITE_LOGO,
+  ...(SAME_AS.length > 0 && { sameAs: SAME_AS }),
+};
+
+const publisher = organization;
+
+// The home page says who the site is: the site itself, and who runs it
+const homeData = () => [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    url: SITE_URL,
+    inLanguage: 'en',
+    publisher: { '@id': ORGANIZATION_ID },
+  },
+  { '@context': 'https://schema.org', ...organization },
+];
 
 const article = (headline: string, description: string, url: string, images: string[]) => ({
   '@context': 'https://schema.org',
@@ -119,6 +143,7 @@ export const pageHead = (pathname: string): PageHead => {
   const page = pages[path];
   if (page) {
     const jsonLd: object[] = [];
+    if (path === '/') jsonLd.push(...homeData());
     if (path === GUIDE_PATH) jsonLd.push(breadcrumbs([home, guide]));
     if (path === '/faq') jsonLd.push(faqPage(), breadcrumbs([home, { name: 'FAQ', path }]));
     if (path === '/letter') jsonLd.push(breadcrumbs([home, { name: 'Letter builder', path }]));

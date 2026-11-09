@@ -85,7 +85,8 @@ NationData
      ├── details: Bilingual[]  What happens: en, with the isiZulu beneath
      ├── media?             A picture for the scene slot before the stage has a scene
      ├── tool?              A link to a page that helps do this stage (to, label, description)
-     ├── passages?          Short titled passages after what happens (title, Bilingual paragraphs)
+     ├── passages?          Short titled passages after what happens (title, Bilingual paragraphs;
+     │                      an isiZulu term in the English is written *like this* for italics)
      └── scene?             The optional story layer
           ├── narration     English narration (required within a scene)
           ├── voice?        Phrase: isiZulu spoken line + English gloss + note

@@ -71,7 +71,11 @@ export interface PageSeo {
   description: string;
 }
 
-/** A short titled passage on a stage page, such as "The six cows at the gate" */
+/**
+ * A short titled passage on a stage page, such as "The six cows at the gate".
+ * In the English, wrap an isiZulu term in asterisks (*amacansi*) to set it
+ * in italics.
+ */
 export interface Passage {
   title: string;
   paragraphs: Bilingual[]; // English first, the isiZulu beneath
